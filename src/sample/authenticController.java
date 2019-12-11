@@ -95,24 +95,12 @@ public class authenticController implements Initializable {
     }
 
     private boolean checkAuth() {
-        Connection connection;
-        PreparedStatement statement;
-        ResultSet resultSet;
-        String query = "SELECT  * FROM  users_table WHERE  login = ? && hash_password = ?;";
-        try {
-            connection = HandlerDb.getConnection();
-            statement = connection.prepareStatement(query);
-            statement.setString(1, email.getText());
-            statement.setString(2, HelpMethod.getMd5(password.getText()));
-            resultSet = statement.executeQuery();
-            if (resultSet.last()) {
-                ID = resultSet.getInt("user_id");
-                return true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        String query = "SELECT  user_id FROM  users_table WHERE  login = ? && hash_password = ?;";
+        if (!HandlerDb.checkIsUnique(query, new String[]{email.getText(), HelpMethod.getMd5(password.getText())})) {
+            ID = HandlerDb.getOneValue(query, new String[]{email.getText(), HelpMethod.getMd5(password.getText())});
+            return true;
         }
-        return false;
+            return false;
     }
 
     public int getId() {   return ID;   }
