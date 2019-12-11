@@ -70,7 +70,7 @@ public class optionController implements Initializable {
     @FXML
     void setClasses_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, "classes.fxml");  }
     @FXML
-    void setExit_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, "auth.fxml");  }
+    void setExit_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, "authentic.fxml");  }
     @FXML
     void setJournal_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, "journal.fxml");  }
     @FXML
