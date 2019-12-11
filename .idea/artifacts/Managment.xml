@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Managment">
+    <output-path>$PROJECT_DIR$/out/artifacts/Managment</output-path>
+    <root id="root">
+      <element id="archive" name="Managment.jar">
+        <element id="module-output" name="Managment" />
+      </element>
+      <element id="library" level="application" name="JavaFX" />
+      <element id="library" level="project" name="lib" />
+    </root>
+  </artifact>
+</component>

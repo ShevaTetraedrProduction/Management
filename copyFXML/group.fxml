@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.groupsController">
+   <children>
+      <Pane fx:id="myPane" prefHeight="500.0" prefWidth="900.0">
+         <children>
+            <JFXButton fx:id="updateFile" layoutX="775.0" layoutY="74.0" prefHeight="26.0" prefWidth="125.0" style="-fx-background-color: #3AE2CE;" text="Оновити Данні">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="delGroup_btn" layoutX="175.0" layoutY="250.0" onAction="#setDeGroup_btn" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #3AE2CE;" text="Видалити Групу">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="addGroup_btn" layoutX="175.0" layoutY="150.0" onAction="#setAddGroup_btn" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #3AE2CE;" text="Добавити Групу">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </JFXButton>
+            <JFXComboBox fx:id="tabOrCons_comboBox" layoutX="600.0" layoutY="75.0" prefHeight="25.0" prefWidth="175.0" />
+            <Pane layoutX="600.0" layoutY="100.0" prefHeight="400.0" prefWidth="300.0">
+               <children>
+                  <JFXTreeTableView fixedCellSize="10.0" prefHeight="400.0" prefWidth="300.0" visible="false">
+                     <columns>
+                        <TreeTableColumn prefWidth="130.0" text="Номер групи" />
+                        <TreeTableColumn prefWidth="168.7999267578125" text="Групи" />
+                     </columns>
+                  </JFXTreeTableView>
+                  <Label prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #F5F5F5;" />
+               </children>
+            </Pane>
+            <TextField fx:id="group_field" layoutX="325.0" layoutY="150.0" prefHeight="25.0" prefWidth="175.0" />
+            <JFXComboBox fx:id="delGroup_comboBox" layoutX="325.0" layoutY="250.0" prefHeight="25.0" prefWidth="175.0" />
+            <JFXButton layoutX="175.0" layoutY="350.0" prefHeight="25.0" prefWidth="144.0" style="-fx-background-color: #3AE2CE;" text="Видали групу №" />
+            <Label alignment="TOP_CENTER" layoutX="419.0" layoutY="8.0" prefHeight="58.0" prefWidth="175.0" text="Групи" textFill="BLUEVIOLET">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Pane prefHeight="500.0" prefWidth="150.0" style="-fx-background-color: #2670E2;">
+               <children>
+                  <VBox prefHeight="500.0" prefWidth="150.0" spacing="40.0">
+                     <children>
+                        <JFXButton disable="true" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7;" text="Групи">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="classes_btn" onAction="#setClasses_btn" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7; -fx-cursor: hand;" text="Предмети" textFill="WHITESMOKE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="students_btn" onAction="#setstudents_btn" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7; -fx-cursor: hand;" text="Студенти" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7;" text="Журнал">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="menu_btn" onAction="#setMenu_btn" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7; -fx-cursor: hand;" text="Головне Меню" textFill="WHITESMOKE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="exit_btn" onAction="#setExit_btn" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7; -fx-cursor: hand;" text="Вихід" textFill="WHITESMOKE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <JFXSlider fx:id="delGroupByNumb_slider" blockIncrement="0.0" layoutX="325.0" layoutY="344.0" majorTickUnit="1.0" max="10.0" minorTickCount="10" prefHeight="37.0" prefWidth="175.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" viewOrder="1.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.authenticController">
+   <children>
+      <Pane fx:id="myPane" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #C0C0C0;">
+         <children>
+            <VBox fx:id="vbox" layoutX="100.0" layoutY="89.0" prefHeight="200.0" prefWidth="300.0" spacing="40.0">
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+               <children>
+                  <TextField fx:id="email" focusTraversable="false" prefHeight="25.0" prefWidth="300.0" promptText="Логін">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
+                  <PasswordField fx:id="password" focusTraversable="false" prefHeight="25.0" prefWidth="300.0" promptText="Пароль">
+                     <font>
+                        <Font size="20.0" />
+                     </font></PasswordField>
+               </children>
+            </VBox>
+            <Text layoutX="125.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ауторизація" textAlignment="CENTER" wrappingWidth="250.0">
+               <font>
+                  <Font name="Constantia Bold Italic" size="36.0" />
+               </font>
+            </Text>
+            <HBox layoutY="326.0" prefHeight="72.0" prefWidth="500.0">
+               <children>
+                  <JFXButton fx:id="cancel_btn" focusTraversable="false" onAction="#setCancel_btn" prefHeight="100.0" prefWidth="300.0" ripplerFill="#0e53ac" style="-fx-background-color: #F5F5F5; -fx-cursor: hand;" text="Скасувати" textFill="#3ae2ce">
+                     <font>
+                        <Font size="29.0" />
+                     </font></JFXButton>
+                  <JFXButton fx:id="accept_btn" focusTraversable="false" onAction="#setAccept_btn" prefHeight="72.0" prefWidth="301.0" ripplerFill="#1b59ea" style="-fx-background-color: #3AE2CE; -fx-cursor: hand;" text="Вхід" textAlignment="CENTER" textFill="#eff1f2">
+                     <font>
+                        <Font size="29.0" />
+                     </font></JFXButton>
+               </children>
+               <padding>
+                  <Insets left="2.0" right="2.0" />
+               </padding>
+            </HBox>
+            <Label fx:id="star1" layoutX="410.0" layoutY="122.0" text="*" textFill="RED" visible="false">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <Label fx:id="tip_error" alignment="TOP_CENTER" layoutX="3.0" layoutY="275.0" prefHeight="49.0" prefWidth="494.0" text="Потрібно вести логін чи пароль" textAlignment="CENTER" textFill="RED" visible="false" />
+            <Label fx:id="star2" layoutX="410.0" layoutY="200.0" text="*" textFill="RED" visible="false">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="guest_btn" layoutX="390.0" layoutY="2.0" onAction="#setGuest_btn" prefHeight="25.0" prefWidth="110.0" ripplerFill="RED" style="-fx-background-color: #123abc; -fx-cursor: hand;" text="ГІСТЬ" textFill="WHITE" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

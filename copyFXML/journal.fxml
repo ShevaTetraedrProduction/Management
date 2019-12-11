@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #A9A9A9;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="myPane" prefHeight="500.0" prefWidth="900.0">
+         <children>
+            <Pane prefHeight="500.0" prefWidth="150.0" style="-fx-background-color: #2670E2;">
+               <children>
+                  <VBox prefHeight="500.0" prefWidth="150.0" spacing="40.0">
+                     <children>
+                        <JFXButton disable="true" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7;" text="Предмети" textFill="WHITESMOKE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="groups_btn" onAction="#setGroups_btn" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7; -fx-cursor: hand;" text="Групи" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="students_btn" onAction="#setStudents_btn" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7; -fx-cursor: hand;" text="Студенти" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7;" text="Журнал">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="menu_btn" onAction="#setMenu_btn" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7; -fx-cursor: hand;" text="Головне Меню" textFill="WHITESMOKE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="exit_btn" onAction="#setExit_btn" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #AA78D7; -fx-cursor: hand;" text="Вихід" textFill="WHITESMOKE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <Pane layoutX="150.0" prefHeight="500.0" prefWidth="750.0">
+               <children>
+                  <Label layoutX="265.0" layoutY="14.0" prefHeight="61.0" prefWidth="150.0" text="Журнал" textFill="#432aff">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <JFXTreeTableView layoutY="167.0" prefHeight="333.0" prefWidth="750.0">
+                     <columns>
+                        <TreeTableColumn prefWidth="36.79998779296875" text="№" />
+                        <TreeTableColumn prefWidth="100.79998779296875" text="Ім'я" />
+                        <TreeTableColumn prefWidth="88.79998779296875" text="Прізвище" />
+                        <TreeTableColumn prefWidth="79.199951171875" text="Предмет№1" />
+                        <TreeTableColumn prefWidth="98.40005493164062" text="Предмет№2" />
+                        <TreeTableColumn prefWidth="88.79998779296875" text="Предмет№3" />
+                        <TreeTableColumn prefWidth="88.79998779296875" text="Предмет№4" />
+                        <TreeTableColumn prefWidth="88.79998779296875" text="Предмет№5" />
+                        <TreeTableColumn prefWidth="88.79998779296875" text="Предмет№1" />
+                     </columns>
+                  </JFXTreeTableView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
