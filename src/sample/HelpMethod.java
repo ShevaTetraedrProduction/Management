@@ -21,16 +21,24 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+enum Collors{
+    Black("\u001B[30m"),
+    RED("\u001B[31m"),
+    GREEN("\u001B[32m"),
+    YELLOW("\u001B[33m"),
+    BLEU("\u001B[34m"),
+    PURPLE("\u001B[35m"),
+    CYAN("\u001B[36m"),
+    WHITE("\u001B[37m");
+
+    private String code;
+    Collors(String code) {
+        this.code = code;
+    }
+    public String getCode(){return code;}
+}
+
 public class HelpMethod {
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String BLACK = "\u001B[30m";
-    public static final String RED = "\u001B[31m";
-    public static final String GREEN = "\u001B[32m";
-    public static final String YELLOW = "\u001B[33m";
-    public static final String BLUE = "\u001B[34m";
-    public static final String PURPLE = "\u001B[35m";
-    public static final String CYAN = "\u001B[36m";
-    public static final String WHITE = "\u001B[37m";
 
     //it is animation when user miss click
     public static void rippler(AnchorPane mainPane, Pane myPane) {
@@ -143,6 +151,7 @@ public class HelpMethod {
     }
     //Help write in console with color
     public static void Message(String collor, String str) {
+        final String ANSI_RESET = "\u001B[0m";
         System.out.println(collor + str + ANSI_RESET);
     }
 
