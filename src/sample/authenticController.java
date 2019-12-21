@@ -35,7 +35,7 @@ public class authenticController implements Initializable {
     // it's to don't write password every time (delete this shit when i done all)
     @FXML
     void setGuest_btn(ActionEvent event) {
-        HelpMethod.makeFadeOut(mainPane, "menu.fxml");
+        HelpMethod.makeFadeOut(mainPane, WINDOWS.MENU);
     }
     @FXML
     void setCancel_btn(ActionEvent event) { HelpMethod.closeWindow(mainPane); }
@@ -64,7 +64,7 @@ public class authenticController implements Initializable {
             star2.setVisible(false);
         if ((!star2.isVisible() && !star1.isVisible())) {
             if (checkAuth()) {
-                HelpMethod.makeFadeOut(mainPane, "menu.fxml");
+                HelpMethod.makeFadeOut(mainPane, WINDOWS.MENU);
                 return;
             }
             JOptionPane.showMessageDialog(null, "Такого користувача не існує");

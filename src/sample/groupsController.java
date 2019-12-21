@@ -51,15 +51,15 @@ public class groupsController implements Initializable {
 
     // navigation
     @FXML
-    void setJournal_btn(ActionEvent event) {     HelpMethod.makeFadeOut(mainPane, "journal.fxml"); }
+    void setJournal_btn(ActionEvent event) {     HelpMethod.makeFadeOut(mainPane, WINDOWS.JOURNAL); }
     @FXML
-    void setClasses_btn(ActionEvent event) {     HelpMethod.makeFadeOut(mainPane, "classes.fxml"); }
+    void setClasses_btn(ActionEvent event) {     HelpMethod.makeFadeOut(mainPane, WINDOWS.CLASSES); }
     @FXML
-    void setExit_btn(ActionEvent event) {       HelpMethod.makeFadeOut(mainPane, "authentic.fxml");}
+    void setExit_btn(ActionEvent event) {       HelpMethod.makeFadeOut(mainPane, WINDOWS.Authentic);}
     @FXML
-    void setMenu_btn(ActionEvent event) {       HelpMethod.makeFadeOut(mainPane, "menu.fxml");  }
+    void setMenu_btn(ActionEvent event) {       HelpMethod.makeFadeOut(mainPane, WINDOWS.MENU);  }
     @FXML
-    void setStudents_btn(ActionEvent event) {      HelpMethod.makeFadeOut(mainPane, "students.fxml"); }
+    void setStudents_btn(ActionEvent event) {      HelpMethod.makeFadeOut(mainPane, WINDOWS.STUDENTS); }
 
 
     private ObservableList<Group> groupsData = FXCollections.observableArrayList();

@@ -50,7 +50,7 @@ enum WINDOWS{
 
     private String name;
     WINDOWS(String name) {this.name = name;}
-    public String getName(){ return name + ".fxml";}
+    public String getName(){ return "fxml/" + name + ".fxml";}
 
 }
 

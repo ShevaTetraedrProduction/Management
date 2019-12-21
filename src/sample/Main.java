@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("authentic.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/authentic.fxml"));
         primaryStage.setTitle("Журнал успішності студента");
         //with = 1525, height = 850
         //900 500

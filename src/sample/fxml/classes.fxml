@@ -59,7 +59,7 @@
                            <graphic>
                               <ImageView fx:id="search_img" fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../img/search.png" />
+                                    <Image url="@../../../img/search.png" />
                                  </image>
                               </ImageView>
                            </graphic>

@@ -66,10 +66,10 @@ public class menuController implements Initializable {
 
 
     @FXML
-    void setStudents_btn(ActionEvent event) {HelpMethod.makeFadeOut(mainPane, "students.fxml");}
+    void setStudents_btn(ActionEvent event) {HelpMethod.makeFadeOut(mainPane, WINDOWS.STUDENTS);}
     @FXML
     void setExit_btn(ActionEvent event) {
-        HelpMethod.makeFadeOut(mainPane,"authentic.fxml");
+        HelpMethod.makeFadeOut(mainPane,WINDOWS.Authentic);
     }
     @FXML
     void setClose_btn(ActionEvent event) {
@@ -77,16 +77,16 @@ public class menuController implements Initializable {
     }
     @FXML
     void setGroups_btn(ActionEvent event) {
-        HelpMethod.makeFadeOut(mainPane,"groups.fxml");
+        HelpMethod.makeFadeOut(mainPane,WINDOWS.GROUPS);
     }
     @FXML
     void setClasses_btn(ActionEvent event) {
-        HelpMethod.makeFadeOut(mainPane, "classes.fxml");
+        HelpMethod.makeFadeOut(mainPane, WINDOWS.CLASSES);
     }
     @FXML
-    void setJournal_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, "journal.fxml");    }
+    void setJournal_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, WINDOWS.JOURNAL);    }
     @FXML
-    void setOption_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, "option.fxml");}
+    void setOption_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, WINDOWS.OPTION);}
 
     int getId() {
         return id;

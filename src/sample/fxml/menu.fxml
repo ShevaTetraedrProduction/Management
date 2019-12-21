@@ -48,7 +48,7 @@
                      <graphic>
                         <ImageView fx:id="exit_img" fitHeight="17.0" fitWidth="23.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../img/exit.png" />
+                              <Image url="@../../../img/exit.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -70,7 +70,7 @@
                                        <graphic>
                                           <ImageView fx:id="classes_img" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../img/classes.png" />
+                                                <Image url="@../../../img/classes.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -91,7 +91,7 @@
                                        <graphic>
                                           <ImageView fx:id="options_img" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../img/options.png" />
+                                                <Image url="@../../../img/options.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -116,7 +116,7 @@
                                        <graphic>
                                           <ImageView fx:id="groups_img" fitHeight="80.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../img/groups.png" />
+                                                <Image url="@../../../img/groups.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -137,7 +137,7 @@
                                        <graphic>
                                           <ImageView fx:id="journal_img" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../img/journal.png" />
+                                                <Image url="@../../../img/journal.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -162,7 +162,7 @@
                                        <graphic>
                                           <ImageView fx:id="student_img" fitHeight="82.0" fitWidth="86.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../img/student.png" />
+                                                <Image url="@../../../img/student.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -183,7 +183,7 @@
                                        <graphic>
                                           <ImageView fx:id="shutdown_img" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../img/shutdown.png" />
+                                                <Image url="@../../../img/shutdown.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>

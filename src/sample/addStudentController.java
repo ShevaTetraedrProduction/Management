@@ -80,7 +80,7 @@ public class addStudentController implements Initializable {
 
     @FXML
     void setCancel_btn(ActionEvent event) {
-        HelpMethod.makeFadeOut(mainPane, "students.fxml");
+        HelpMethod.makeFadeOut(mainPane, WINDOWS.STUDENTS);
     }
 
     void clearFields() {

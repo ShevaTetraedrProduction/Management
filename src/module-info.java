@@ -7,5 +7,6 @@ module Managment {
     requires com.jfoenix;
     requires java.desktop;
 
+   // opens sample.fxml;
     opens sample;
 }
