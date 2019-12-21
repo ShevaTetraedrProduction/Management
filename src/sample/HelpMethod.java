@@ -86,7 +86,7 @@ public class HelpMethod {
             curStage.centerOnScreen();
             //curStage.setX(250);
             //curStage.setY(150);
-            Message(HelpMethod.PURPLE, "Перехід до " + s);
+            Message(Collors.PURPLE, "Перехід до " + s);
             curStage.setTitle("Журнал оцінювання");
         } catch (IOException e) {
             e.printStackTrace();
@@ -150,9 +150,9 @@ public class HelpMethod {
         }
     }
     //Help write in console with color
-    public static void Message(String collor, String str) {
+    public static void Message(Collors col, String str) {
         final String ANSI_RESET = "\u001B[0m";
-        System.out.println(collor + str + ANSI_RESET);
+        System.out.println(col.getCode() + str + ANSI_RESET);
     }
 
     // to fill some comBox date from sql table
