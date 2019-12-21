@@ -38,6 +38,22 @@ enum COLORS{
     public String getCode(){return code;}
 }
 
+enum WINDOWS{
+    Authentic("authentic"),
+    MENU("menu"),
+    GROUPS("groups"),
+    STUDENTS("students"),
+    CLASSES("classes"),
+    OPTION("option"),
+    JOURNAL("journal"),
+    ADDSTUDENT("addStudent");
+
+    private String name;
+    WINDOWS(String name) {this.name = name;}
+    public String getName(){ return name + ".fxml";}
+
+}
+
 public class HelpMethod {
 
     //it is animation when user miss click
