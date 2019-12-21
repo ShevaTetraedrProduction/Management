@@ -71,7 +71,7 @@ public class HelpMethod {
     }
 
     // it's animation when we open new Window or transit
-    public static void makeFadeOut(AnchorPane mainPane, String s) {
+    public static void makeFadeOut(AnchorPane mainPane, WINDOWS w) {
         FadeTransition fadeTransition = new FadeTransition();
         fadeTransition.setDuration(Duration.millis(1000));
         fadeTransition.setNode(mainPane);
@@ -81,7 +81,7 @@ public class HelpMethod {
         fadeTransition.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                openWindow(mainPane, s);
+                openWindow(mainPane, w.getName());
             }
         });
         fadeTransition.play();
