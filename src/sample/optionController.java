@@ -47,7 +47,7 @@ public class optionController implements Initializable {
         if (nickName_field.getLength() == 0) return;
         HandlerDb.executeQuery(query, new String[]{nickName_field.getText()}, new int[]{id});
         nickName_field.setText("");
-        HelpMethod.Message(HelpMethod.YELLOW, "Логін змінений");
+        HelpMethod.Message(COLORS.YELLOW, "Логін змінений");
     }
 
     @FXML
@@ -63,7 +63,7 @@ public class optionController implements Initializable {
         if (password_field.getLength() == 0) return;
         HandlerDb.executeQuery(query, new String[]{String.valueOf(HelpMethod.getMd5(password_field.getText()))}, new int[]{id});
         password_field.setText("");
-        HelpMethod.Message(HelpMethod.YELLOW, "Пароль змінений");
+        HelpMethod.Message(COLORS.YELLOW, "Пароль змінений");
     }
 
     // navigation

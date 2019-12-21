@@ -52,13 +52,13 @@ public class authenticController implements Initializable {
         StringBuilder tip = new StringBuilder("");
         if (email.getLength() == 0) {
             star1.setVisible(true);
-            HelpMethod.Message(Collors.RED.getCode(), "Логін не заповнений");
+            HelpMethod.Message(COLORS.RED, "Логін не заповнений");
             tip.append("Логін не запонений \n");
         } else
             star1.setVisible(false);
         if (password.getLength() == 0) {
             star2.setVisible(true);
-            HelpMethod.Message(Collors.RED.getCode(), "Пароль не заповнений");
+            HelpMethod.Message(COLORS.RED, "Пароль не заповнений");
             tip.append("Пароль не заповнений");
         } else
             star2.setVisible(false);
@@ -78,7 +78,7 @@ public class authenticController implements Initializable {
     void checkBoxSelected() {
         show_checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
             public void changed(ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) {
-                HelpMethod.Message(Collors.GREEN.getCode(), "Видимість паролю -> " + Boolean.toString(show_checkBox.isSelected()));
+                HelpMethod.Message(COLORS.GREEN, "Видимість паролю -> " + Boolean.toString(show_checkBox.isSelected()));
                 if (show_checkBox.isSelected()) {
                     showPassword_label.setText("Пароль: " + password.getText());
                     showPassword_label.setVisible(true);

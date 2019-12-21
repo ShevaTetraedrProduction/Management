@@ -26,11 +26,11 @@ public class HandlerDb {
 
          */
         //HelpMethod.Message(HelpMethod.WHITE,"JDBC Driver has been registered!");
-        HelpMethod.Message(HelpMethod.WHITE, "Робота з базою данних");
+        HelpMethod.Message(COLORS.WHITE, "Робота з базою данних");
         try {
             connection = DriverManager.getConnection(connectionString, "root", "");
         } catch (SQLException e) {
-            HelpMethod.Message(HelpMethod.RED, "Connection Failed! Check output console" + e);
+            HelpMethod.Message(COLORS.RED, "Connection Failed! Check output console" + e);
             e.printStackTrace();
         }
         return connection;

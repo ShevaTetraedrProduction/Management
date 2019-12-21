@@ -137,7 +137,7 @@ public class groupsController implements Initializable {
 
     boolean checkDelElement(int id) {
         if (!HandlerDb.checkIsUnique("SELECT * FROM students_table WHERE group_id = ?;", new int[]{id})) {
-            HelpMethod.Message(HelpMethod.RED, "Групу не можливо видалити");
+            HelpMethod.Message(COLORS.RED, "Групу не можливо видалити");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Групу не можна видалити");
             // Header Text: null
@@ -160,7 +160,7 @@ public class groupsController implements Initializable {
                 String name = group_field.getText().toUpperCase();
 
                 if (!HandlerDb.checkIsUnique("SELECT * FROM groups_table WHERE group_name = ?;", new String[]{name})) {
-                    HelpMethod.Message(HelpMethod.YELLOW, "Не можливо добавити групу так як група уже існує " + name);
+                    HelpMethod.Message(COLORS.YELLOW, "Не можливо добавити групу так як група уже існує " + name);
                     group_field.setText("");
                     group_field.setVisible(false);
                     return;
@@ -168,7 +168,7 @@ public class groupsController implements Initializable {
                 HandlerDb.autoIncZero("groups_table");
                 HandlerDb.executeQuery("INSERT INTO groups_table(group_name) VALUE (?);", new String[]{name});
                 initTable();
-                HelpMethod.Message(HelpMethod.YELLOW, "Група добавлена до бази " + name);
+                HelpMethod.Message(COLORS.YELLOW, "Група добавлена до бази " + name);
             }
             group_field.setText("");
             group_field.setVisible(false);
@@ -182,7 +182,7 @@ public class groupsController implements Initializable {
             return;
         String query = "DELETE FROM groups_table WHERE group_id = ?;";
         HandlerDb.executeQuery(query, new int[]{group_id});
-        HelpMethod.Message(HelpMethod.GREEN, "Групу " + name + " видалено");
+        HelpMethod.Message(COLORS.GREEN, "Групу " + name + " видалено");
         delGroup_comboBox.getItems().clear();
         HelpMethod.fillGroup(delGroup_comboBox);
     }

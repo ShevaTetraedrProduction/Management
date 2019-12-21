@@ -140,7 +140,7 @@ public class StudentController implements Initializable {
                             delButton.setOnAction(event -> {
                                 Student s = getTableView().getItems().get(getIndex());
                                 delElement(s.getId());
-                                HelpMethod.Message(Collors.GREEN.getCode(), "Студента " + s.getName() + " " + s.getLastName() +
+                                HelpMethod.Message(COLORS.GREEN, "Студента " + s.getName() + " " + s.getLastName() +
                                         " Виключено з університету");
                                 initTable();
                                 search();

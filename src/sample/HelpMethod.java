@@ -21,7 +21,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-enum Collors{
+enum COLORS{
     Black("\u001B[30m"),
     RED("\u001B[31m"),
     GREEN("\u001B[32m"),
@@ -32,7 +32,7 @@ enum Collors{
     WHITE("\u001B[37m");
 
     private String code;
-    Collors(String code) {
+    COLORS(String code) {
         this.code = code;
     }
     public String getCode(){return code;}
@@ -86,7 +86,7 @@ public class HelpMethod {
             curStage.centerOnScreen();
             //curStage.setX(250);
             //curStage.setY(150);
-            Message(Collors.PURPLE, "Перехід до " + s);
+            Message(COLORS.PURPLE, "Перехід до " + s);
             curStage.setTitle("Журнал оцінювання");
         } catch (IOException e) {
             e.printStackTrace();
@@ -150,7 +150,7 @@ public class HelpMethod {
         }
     }
     //Help write in console with color
-    public static void Message(Collors col, String str) {
+    public static void Message(COLORS col, String str) {
         final String ANSI_RESET = "\u001B[0m";
         System.out.println(col.getCode() + str + ANSI_RESET);
     }

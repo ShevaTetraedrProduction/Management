@@ -111,12 +111,12 @@ public class classesController implements Initializable {
                 HandlerDb.executeQuery(query, new String[]{subject});
             }
             else
-                HelpMethod.Message(HelpMethod.YELLOW, "Така дисципліна уже додана в базу");
+                HelpMethod.Message(COLORS.YELLOW, "Така дисципліна уже додана в базу");
 
             int class_id = HandlerDb.getOneValue("SELECT class_id FROM classes_table WHERE name = ?;", new String[]{subject});
 
             if (!HandlerDb.checkIsUnique("SELECT * FROM groupClasses_table WHERE class_id = ? AND group_id = ?", new int[]{class_id, GROUP_ID}))
-                HelpMethod.Message(HelpMethod.YELLOW, "Така дисципліна уже додана в групу");
+                HelpMethod.Message(COLORS.YELLOW, "Така дисципліна уже додана в групу");
             else {
                 HandlerDb.executeQuery("INSERT INTO groupClasses_table(group_id, class_id) VALUES (?, ?);", new int[]{GROUP_ID, class_id});
                 String query = "INSERT INTO grades_table(student_id, group_id, class_id) " +

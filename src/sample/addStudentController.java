@@ -48,7 +48,7 @@ public class addStudentController implements Initializable {
         clearStar();
         if (check(name, lastName, nickName, group, year)) {
 
-            HelpMethod.Message(HelpMethod.GREEN, "Всі поля заповнені");
+            HelpMethod.Message(COLORS.GREEN, "Всі поля заповнені");
             if (!HandlerDb.checkIsUnique("SELECT * FROM users_table WHERE login = ?;", new String[]{nickName})) {
                 clearStar();
                 star3.setVisible(true);
