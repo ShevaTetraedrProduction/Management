@@ -10,3 +10,10 @@ Students/Schoolboy marks Management
 
 ![classesCompleted](https://github.com/ShevaTetraedrProduction/Management/blob/master/img/completedImg/classesCompleted.png)
 
+
+Use
+ - jfoenix
+ - mySQL
+ - wingix
+ - JavaFX
+ - JDK 12
