@@ -38,22 +38,6 @@ enum COLORS{
     public String getCode(){return code;}
 }
 
-enum WINDOWS{
-    Authentic("authentic"),
-    MENU("menu"),
-    GROUPS("groups"),
-    STUDENTS("students"),
-    CLASSES("classes"),
-    OPTION("option"),
-    JOURNAL("journal"),
-    ADDSTUDENT("addStudent");
-
-    private String name;
-    WINDOWS(String name) {this.name = name;}
-    public String getName(){ return "fxml/" + name + ".fxml";}
-
-}
-
 public class HelpMethod {
 
     //it is animation when user miss click
@@ -133,7 +117,9 @@ public class HelpMethod {
     }
     // Help to direct to right folders
     public static void setImage(String nameImg, ImageView nameObj) {
-        File file = new File("C:\\Users\\Xiaomi\\IdeaProjects\\Management\\img\\" + nameImg + ".png");
+        String pathToProject =  System.getProperty("user.dir");
+        File file = new File(pathToProject + "\\img\\" + nameImg + ".png");
+        //File file = new File("C:\\Users\\Xiaomi\\IdeaProjects\\Management\\img\\" + nameImg + ".png");
         Image image_icon = new Image(file.toURI().toString());
         nameObj.setImage(image_icon);
     }

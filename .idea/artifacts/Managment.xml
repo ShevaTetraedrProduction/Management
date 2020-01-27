@@ -5,8 +5,9 @@
       <element id="archive" name="Managment.jar">
         <element id="module-output" name="Managment" />
       </element>
-      <element id="library" level="application" name="JavaFX" />
+      <element id="library" level="project" name="mysql-connector-java-5.1.48" />
       <element id="library" level="project" name="lib" />
+      <element id="library" level="application" name="JAVAFX11" />
     </root>
   </artifact>
 </component>

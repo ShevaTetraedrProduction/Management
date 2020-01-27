@@ -88,7 +88,7 @@ public class menuController implements Initializable {
     @FXML
     void setOption_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, WINDOWS.OPTION);}
 
-    int getId() {
+    public int getId() {
         return id;
     }
 
