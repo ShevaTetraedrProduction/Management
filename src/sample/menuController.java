@@ -21,14 +21,16 @@ public class menuController implements Initializable {
     @FXML
     private Label info_label1, info_label2, info_label3;
     @FXML
-    private JFXButton option_btn, exit_btn, classes_btn, close_btn, groups_btn, journal_btn;
+    private JFXButton option_btn, exit_btn, classes_btn, teachers_btn, groups_btn, journal_btn;
     @FXML
-    private ImageView exit_img, student_img, shutdown_img, groups_img, options_img, classes_img, journal_img;
+    private ImageView exit_img, student_img, teachers_img, groups_img, options_img, classes_img, journal_img;
 
     static int id;
+    static int accessLevel;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         id = new authenticController().getId();
+
         HelpMethod.rippler(mainPane, myPane);
         Connection connection;
         PreparedStatement statement;
@@ -47,7 +49,8 @@ public class menuController implements Initializable {
                 info_label2.setText(str);
                 resultSet = connection.createStatement().executeQuery("SELECT accessLevel FROM users_table WHERE  user_id = " + id + ";");
                 resultSet.last();
-                str = info_label3.getText() + (resultSet.getInt(1) == 0 ? "студент" : "адмін");
+                accessLevel = resultSet.getInt(1);
+                str = info_label3.getText() + (accessLevel == 0 ? "студент" : "адмін");
                 info_label3.setText(str);
             }
         } catch (SQLException e) {
@@ -55,11 +58,12 @@ public class menuController implements Initializable {
         }
         HelpMethod.setImage("exit", exit_img);
         HelpMethod.setImage("student", student_img);
-        HelpMethod.setImage("shutdown", shutdown_img);
+        HelpMethod.setImage("teacher", teachers_img);
         HelpMethod.setImage("groups", groups_img);
         HelpMethod.setImage("journal", journal_img);
         HelpMethod.setImage("classes", classes_img);
         HelpMethod.setImage("options", options_img);
+
     }
 
 

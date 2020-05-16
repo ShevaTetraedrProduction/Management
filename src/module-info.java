@@ -6,7 +6,8 @@ module Managment {
     requires mysql.connector.java;
     requires com.jfoenix;
     requires java.desktop;
+    requires javafx.graphics;
 
-   // opens sample.fxml;
+    // opens sample.fxml;
     opens sample;
 }
