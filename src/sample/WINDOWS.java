@@ -5,10 +5,12 @@ public enum WINDOWS{
     MENU("menu"),
     GROUPS("groups"),
     STUDENTS("students"),
+    TEACHERS("teachers"),
     CLASSES("classes"),
     OPTION("option"),
     JOURNAL("journal"),
     ADDSTUDENT("addStudent");
+
 
     private String name;
     WINDOWS(String name) {this.name = name;}
