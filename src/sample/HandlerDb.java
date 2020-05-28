@@ -197,6 +197,33 @@ public class HandlerDb {
         return res;
     }
 
+    private static String getAllStr(String query, int[] x) {
+        Connection connection = getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        StringBuilder res = new StringBuilder("");
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            for (int i = 0; i < x.length; i++)
+                preparedStatement.setInt(i + 1, x[i]);
+            resultSet = preparedStatement.executeQuery();
+            resultSet.last();
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            int colNumber = rsmd.getColumnCount();
+            for (int i = 0; i < colNumber; i++)
+                res.append(resultSet.getString(i + 1) + ",");
+            res.deleteCharAt(res.length() - 1);
+
+            preparedStatement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res.toString();
+    }
+
+
+
     public static int getOneValue(String query, String[] s) {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
@@ -221,6 +248,7 @@ public class HandlerDb {
         Connection connection = getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
+
         int res = -1;
         try {
             preparedStatement = connection.prepareStatement(query);
@@ -234,6 +262,13 @@ public class HandlerDb {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return res;
+    }
+
+    public static String[] getInformationStudent(int user_id) {
+        String query = "SELECT s.user_id, s.first_name, s.last_name, g.group_name, s.year  FROM students_table s LEFT JOIN groups_table g on s.group_id = g.group_id WHERE  s.user_id = ?;";
+        String inf = HandlerDb.getAllStr(query, new int[]{user_id});
+        String[] res = inf.split(",");
         return res;
     }
 
