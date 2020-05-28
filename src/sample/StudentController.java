@@ -2,6 +2,8 @@ package sample;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -27,7 +29,11 @@ public class StudentController implements Initializable {
     @FXML
     private AnchorPane mainPane;
     @FXML
-    private Pane myPane;
+    private Pane myPane, editPane;
+    @FXML
+    private Label nameGroup, adm_label;
+    @FXML
+    private JFXComboBox<String> group_comboBox;
 
     @FXML
     private TableView<Student> students_table;
@@ -39,18 +45,18 @@ public class StudentController implements Initializable {
     @FXML
     private TableColumn<Student, JFXButton> del_col;
 
-    @FXML
-    private JFXComboBox<String> student_comboBox;
-    @FXML
-    private JFXButton classes_btn, groups_btn, journal_btn, menu_btn, exit_btn;
 
     @FXML
-    private JFXButton delGroup_btn, addStudent_btn;
+    private JFXButton classes_btn, groups_btn, journal_btn, menu_btn, exit_btn, addStudent_btn, delGroup_btn;
 
     @FXML
     private TextField search_field;
     @FXML
     private ImageView search_img;
+
+    static final int ID = new authenticController().getId();
+    String GROUP_NAME = "";
+    int GROUP_ID = -1;
 
     // navigation
     @FXML
@@ -68,21 +74,7 @@ public class StudentController implements Initializable {
         HelpMethod.makeFadeOut(mainPane, WINDOWS.ADDSTUDENT);
     }
 
-    @FXML
-    void setDeGroup_btn(ActionEvent event) {
-        if (!student_comboBox.isVisible()) {
-            student_comboBox.setVisible(true);
-            student_comboBox.getItems().clear();
-            HelpMethod.fillStudent(student_comboBox);
-            return;
-        }
-        int id = Integer.parseInt(student_comboBox.getValue().split(" ")[0]);
-        delElement(id);
-        initTable();
-        student_comboBox.setValue("");
-        student_comboBox.setVisible(false);
-        search();
-    }
+
 
 
 
@@ -92,20 +84,42 @@ public class StudentController implements Initializable {
         HelpMethod.rippler(mainPane, myPane);
         HelpMethod.setImage("search", search_img);
         initTable();
-        HelpMethod.fillStudent(student_comboBox);
+
+        HelpMethod.fillGroup(group_comboBox);
         students_table.setItems(studentsData);
         search();
+
+        //Method  comboBox to always look on  the changes in value
+        group_comboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                System.out.println(newValue);
+                editPane.setVisible(true);
+                nameGroup.setText("Предмети для групи: " + newValue);
+                GROUP_NAME = newValue;
+                GROUP_ID = HandlerDb.getOneValue("SELECT group_id FROM groups_table WHERE group_name = ?;", new String[]{GROUP_NAME});
+                HelpMethod.fillClasses(group_comboBox, GROUP_ID);
+                editPane.setVisible(true);
+                group_comboBox.getItems().clear();
+                initTable();
+                search();
+            }
+        });
+
+
     }
     private void initTable() {
         initCols();
     }
 
     private void initCols() {
+        String[] inf = HandlerDb.getInformationStudent(ID);
         studentsData = FXCollections.observableArrayList();
         Connection connection = HandlerDb.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        String query = "SELECT s.student_id,s.first_name, s.last_name, g.group_name, s.year FROM students_table s LEFT JOIN groups_table g on s.group_id = g.group_id;";
+        String query = "SELECT s.student_id,s.first_name, s.last_name, g.group_name, s.year FROM students_table s" +
+                " LEFT JOIN groups_table g on s.group_id = g.group_id WHERE g.group_name = '" + inf[3]  + "';";
         try {
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery(query);
@@ -192,8 +206,8 @@ public class StudentController implements Initializable {
         HandlerDb.executeQuery(query, new int[]{student_id});
         query = "DELETE FROM users_table WHERE user_id= ?;";
         HandlerDb.executeQuery(query, new int[]{user_id});
-        student_comboBox.getItems().clear();
-        HelpMethod.fillStudent(student_comboBox);
+        //*student_comboBox.getItems().clear();
+        //*HelpMethod.fillStudent(student_comboBox);
     }
 
 

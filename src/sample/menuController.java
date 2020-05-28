@@ -8,9 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-
 import java.net.URL;
-import java.sql.*;
 import java.util.ResourceBundle;
 
 public class menuController implements Initializable {

@@ -35,8 +35,10 @@ public class authenticController implements Initializable {
     // it's to don't write password every time (delete this shit when i done all)
     @FXML
     void setGuest_btn(ActionEvent event) {
-        email.setText("iryna");
-        password.setText("шевчук");
+        /*email.setText("iryna");
+        password.setText("шевчук");*/
+        email.setText("admin");
+        password.setText("admin");
         if (checkAuth())      HelpMethod.guest(mainPane);
             //HelpMethod.makeFadeOut(mainPane, WINDOWS.MENU);
     }
@@ -95,6 +97,7 @@ public class authenticController implements Initializable {
 
     private boolean checkAuth() {
         String query = "SELECT  user_id FROM  users_table WHERE  login = ? && hash_password = ?;";
+        System.out.println(HelpMethod.getMd5(password.getText()));
         if (!HandlerDb.checkIsUnique(query, new String[]{email.getText(), HelpMethod.getMd5(password.getText())})) {
             ID = HandlerDb.getOneValue(query, new String[]{email.getText(), HelpMethod.getMd5(password.getText())});
             return true;

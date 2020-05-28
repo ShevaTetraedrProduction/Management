@@ -53,7 +53,8 @@ public class classesController implements Initializable {
     private ImageView search_img;
 
 
-    private ObservableList<Class> classesData;// = FXCollections.observableArrayList();
+    //private ObservableList<Class> classesData;;// = FXCollections.observableArrayList();
+    private ObservableList<Class> classesData = FXCollections.observableArrayList();
 
     // IT is parameters which are currently active(SELECTED in ComboBox)
     String GROUP_NAME = "";
@@ -83,11 +84,13 @@ public class classesController implements Initializable {
             group_comboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                 //   classes_table.getColumns().clear();
                     System.out.println(newValue);
                     editPane.setVisible(true);
                     nameGroup.setText("Предмети для групи: " + newValue);
                     GROUP_NAME = newValue;
                     GROUP_ID = HandlerDb.getOneValue("SELECT group_id FROM groups_table WHERE group_name = ?;", new String[]{GROUP_NAME});
+
                     HelpMethod.fillClasses(subject_comboBox, GROUP_ID);
                     editPane.setVisible(true);
                     subject_comboBox.getItems().clear();
@@ -157,10 +160,13 @@ public class classesController implements Initializable {
     }
 
     void initTable() {
+       // classes_table.getColumns().clear();
         initCols();
         // add method in future
         //updateDate()
+      //  initCols2(classesData);
     }
+
 
     // init data in columns
     void initCols() {
@@ -224,6 +230,71 @@ public class classesController implements Initializable {
 
 
         classes_table.setItems(classesData);
+    }
+
+    void initCols2( ObservableList<Class> classesData) {
+        Connection connection = HandlerDb.getConnection();
+
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        String query = "SELECT gt.group_name,c.name FROM groupClasses_table gc " +
+                "LEFT JOIN classes_table c on gc.class_id = c.class_id " +
+                "LEFT JOIN groups_table gt on gc.group_id = gt.group_id " +
+                "WHERE gt.group_name = '" + GROUP_NAME + "';";
+        try {
+            statement = connection.prepareStatement(query);
+            //statement.setString(1, group_name);
+            resultSet = statement.executeQuery(query);
+            int numb = 1;
+            while (resultSet.next()) {
+                Class subject = new Class();
+                subject.setId(numb++);
+                subject.setGroup(resultSet.getString(1));
+                subject.setName(resultSet.getString(2));
+                classesData.add(subject);
+            }
+            statement.close();
+            resultSet.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // INSERT DATA INTO COLUMNS
+        col_numb.setCellValueFactory(new PropertyValueFactory<>("id"));
+        col_group.setCellValueFactory(new PropertyValueFactory<>("group"));
+        col_class.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        // add button 'DEL' to every row
+        Callback<TableColumn<Class, JFXButton>, TableCell<Class, JFXButton>> cellFactory = (param) -> {
+            final TableCell<Class, JFXButton> cell = new TableCell<Class, JFXButton>() {
+                @Override
+                protected void updateItem(JFXButton iteam, boolean empty) {
+                    super.updateItem(iteam, empty);
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+                        final JFXButton delButton = new JFXButton("DEL");
+                        delButton.setStyle("-fx-background-color: orangered");
+                        //    delButton.setStyle("-fx-text-fill: whitesmoke"); (not work ;( )
+                        // add event to every button
+                        delButton.setOnAction(event -> {
+                            Class c = getTableView().getItems().get(getIndex());
+                            delSubject(c.getName());
+                        });
+                        setGraphic(delButton);
+                        setText(null);
+                    }
+                }
+            };
+            return cell;
+        };
+        col_del.setCellFactory(cellFactory);
+
+
+        classes_table.setItems(classesData);
+
+
     }
 
 
