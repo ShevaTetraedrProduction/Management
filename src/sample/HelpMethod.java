@@ -72,7 +72,7 @@ public class HelpMethod {
     }
 
     // the process of opening a window
-    private static void openWindow(AnchorPane mainPane, String s) {
+    public static void openWindow(AnchorPane mainPane, String s) {
         Parent Window;
         try {
             FXMLLoader loader = new FXMLLoader(HelpMethod.class.getResource(s));
@@ -93,7 +93,7 @@ public class HelpMethod {
         }
     }
     //the process of opening a window and not close the previous
-    public static void openNewWindow(AnchorPane mainPane, String s, String title) {
+    private static void openNewWindow(AnchorPane mainPane, String s, String title) {
         Parent Window;
         try {
             FXMLLoader loader = new FXMLLoader(HelpMethod.class.getResource(s));
@@ -125,7 +125,7 @@ public class HelpMethod {
     }
 
 
-
+public static void guest(AnchorPane mainPane) {  openWindow(mainPane, WINDOWS.MENU.getName()); }
 
 
     // return hash password by means of md5(not my)
