@@ -266,7 +266,9 @@ public class HandlerDb {
     }
 
     public static String[] getInformationStudent(int user_id) {
-        String query = "SELECT s.user_id, s.first_name, s.last_name, g.group_name, s.year  FROM students_table s LEFT JOIN groups_table g on s.group_id = g.group_id WHERE  s.user_id = ?;";
+        String query = "SELECT s.user_id, s.first_name, s.last_name, g.group_name, s.year, u.accessLevel " +
+                "FROM students_table s LEFT JOIN groups_table g on s.group_id = g.group_id " +
+                "LEFT JOIN users_table u ON u.user_id = s.user_id WHERE s.user_id = ?;";
         String inf = HandlerDb.getAllStr(query, new int[]{user_id});
         String[] res = inf.split(",");
         return res;
