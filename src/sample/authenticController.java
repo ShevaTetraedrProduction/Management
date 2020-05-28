@@ -35,7 +35,10 @@ public class authenticController implements Initializable {
     // it's to don't write password every time (delete this shit when i done all)
     @FXML
     void setGuest_btn(ActionEvent event) {
-        HelpMethod.makeFadeOut(mainPane, WINDOWS.MENU);
+        email.setText("iryna");
+        password.setText("шевчук");
+        if (checkAuth())      HelpMethod.guest(mainPane);
+            //HelpMethod.makeFadeOut(mainPane, WINDOWS.MENU);
     }
     @FXML
     void setCancel_btn(ActionEvent event) { HelpMethod.closeWindow(mainPane); }
