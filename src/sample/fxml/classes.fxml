@@ -20,7 +20,7 @@
          <children>
             <Pane layoutX="170.0" prefHeight="500.0" prefWidth="730.0">
                <children>
-                  <Label layoutX="14.0" layoutY="85.0" prefHeight="50.0" prefWidth="230.0" text="Оберіть групу для пошуку предметів:" />
+                  <Label fx:id="adm_label" layoutX="14.0" layoutY="85.0" prefHeight="50.0" prefWidth="230.0" text="Оберіть групу для пошуку предметів:" />
                   <Label alignment="TOP_CENTER" layoutX="244.0" layoutY="6.0" prefHeight="58.0" prefWidth="238.0" text="Предмети" textFill="#407a61">
                      <font>
                         <Font size="40.0" />

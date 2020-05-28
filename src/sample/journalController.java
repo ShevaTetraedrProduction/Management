@@ -18,12 +18,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -49,11 +51,16 @@ public class journalController implements Initializable {
     private TextField search_field;
     @FXML
     private ImageView search_img;
+    @FXML
+    private Label adm_label;
 
     List<String> CLASSES = new ArrayList<>();
     // IT is parameters which are currently active(SELECTED in ComboBox)
     String GROUP_NAME = "";
     int GROUP_ID = -1;
+    static final int ID = new authenticController().getId();
+
+
 
     private ObservableList<Journal> gratesData = FXCollections.observableArrayList();
 
@@ -71,9 +78,13 @@ public class journalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //id = new authenticController().getId();
         HelpMethod.rippler(mainPane, myPane);
         HelpMethod.setImage("search", search_img);
         HelpMethod.fillGroup(group_comboBox);
+
+        String[] infStd = HandlerDb.getInformationStudent(ID);
+
 
         group_comboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -91,6 +102,13 @@ public class journalController implements Initializable {
                 search();
             }
         });
+
+
+        if (infStd[5].equals("0")){
+            group_comboBox.getSelectionModel().select(infStd[3]);
+            group_comboBox.setVisible(false);
+            adm_label.setVisible(false);
+        }
 
     }
 

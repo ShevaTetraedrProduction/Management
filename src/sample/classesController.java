@@ -28,7 +28,7 @@ public class classesController implements Initializable {
     @FXML
     private Pane myPane, editPane;
     @FXML
-    private Label nameGroup;
+    private Label nameGroup, adm_label;
 
     @FXML
     private TableView<Class> classes_table;
@@ -58,6 +58,7 @@ public class classesController implements Initializable {
     // IT is parameters which are currently active(SELECTED in ComboBox)
     String GROUP_NAME = "";
     int GROUP_ID = -1;
+    static final int ID = new authenticController().getId();
 
     // navigation
     @FXML
@@ -77,23 +78,34 @@ public class classesController implements Initializable {
         HelpMethod.rippler(mainPane, myPane);
         HelpMethod.fillGroup(group_comboBox);
         HelpMethod.setImage("search", search_img);
+        String[] infStd = HandlerDb.getInformationStudent(ID);
+            //Method  comboBox to always look on  the changes in value
+            group_comboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
+                    System.out.println(newValue);
+                    editPane.setVisible(true);
+                    nameGroup.setText("Предмети для групи: " + newValue);
+                    GROUP_NAME = newValue;
+                    GROUP_ID = HandlerDb.getOneValue("SELECT group_id FROM groups_table WHERE group_name = ?;", new String[]{GROUP_NAME});
+                    HelpMethod.fillClasses(subject_comboBox, GROUP_ID);
+                    editPane.setVisible(true);
+                    subject_comboBox.getItems().clear();
+                    initTable();
+                    search();
+                }
+            });
 
-        //Method  comboBox to always look on  the changes in value
-        group_comboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
-                System.out.println(newValue);
-                editPane.setVisible(true);
-                nameGroup.setText("Предмети для групи: " + newValue);
-                GROUP_NAME = newValue;
-                GROUP_ID = HandlerDb.getOneValue("SELECT group_id FROM groups_table WHERE group_name = ?;", new String[]{GROUP_NAME});
-                HelpMethod.fillClasses(subject_comboBox, GROUP_ID);
-                editPane.setVisible(true);
-                subject_comboBox.getItems().clear();
-                initTable();
-                search();
-            }
-        });
+        if (infStd[5].equals("0")){
+            group_comboBox.getSelectionModel().select(infStd[3]);
+            group_comboBox.setVisible(false);
+            addSubject_btn.setVisible(false);
+            delSubject_btn.setVisible(false);
+            adm_label.setVisible(false);
+            col_del.setVisible(false);
+            col_group.setVisible(false);
+        }
+
     }
 
     @FXML
