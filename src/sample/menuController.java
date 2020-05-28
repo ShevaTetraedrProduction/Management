@@ -25,37 +25,16 @@ public class menuController implements Initializable {
     @FXML
     private ImageView exit_img, student_img, teachers_img, groups_img, options_img, classes_img, journal_img;
 
-    static int id;
-    static int accessLevel;
+    static int ID = new authenticController().getId();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        id = new authenticController().getId();
-
         HelpMethod.rippler(mainPane, myPane);
-        Connection connection;
-        PreparedStatement statement;
-        ResultSet resultSet;
-        String query = "SELECT  s.user_id, s.first_name, s.last_name, g.group_name, s.year FROM  students_table s LEFT JOIN " +
-                "groups_table g on s.group_id = g.group_id WHERE  s.user_id = ?;";
-        try {
-            connection = HandlerDb.getConnection();
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, id);
-            resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                String str = info_label1.getText() + " " + resultSet.getString(2) + " " + resultSet.getString(3);
-                info_label1.setText(str);
-                str = info_label2.getText() + " " + resultSet.getString(4) + ", " + resultSet.getInt(5) + " курс";
-                info_label2.setText(str);
-                resultSet = connection.createStatement().executeQuery("SELECT accessLevel FROM users_table WHERE  user_id = " + id + ";");
-                resultSet.last();
-                accessLevel = resultSet.getInt(1);
-                str = info_label3.getText() + (accessLevel == 0 ? "студент" : "адмін");
-                info_label3.setText(str);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        String[] information_std = HandlerDb.getInformationStudent(ID);
+        String NAME = information_std[1], SURNAME = information_std[2], GROUP = information_std[3], YEAR = information_std[4], ACCESSLEVEL = information_std[5];
+        info_label1.setText(info_label1.getText() + " " + NAME + " " + SURNAME);
+        info_label2.setText(info_label2.getText() + " " + GROUP + ", " + YEAR + " курс");
+        info_label3.setText(info_label3.getText() + (ACCESSLEVEL.equals("0") ? "студент" : "викладач"));
+
         HelpMethod.setImage("exit", exit_img);
         HelpMethod.setImage("student", student_img);
         HelpMethod.setImage("teacher", teachers_img);
@@ -63,11 +42,7 @@ public class menuController implements Initializable {
         HelpMethod.setImage("journal", journal_img);
         HelpMethod.setImage("classes", classes_img);
         HelpMethod.setImage("options", options_img);
-
     }
-
-
-
 
     @FXML
     void setStudents_btn(ActionEvent event) {HelpMethod.makeFadeOut(mainPane, WINDOWS.STUDENTS);}
@@ -93,7 +68,6 @@ public class menuController implements Initializable {
     void setOption_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, WINDOWS.OPTION);}
 
     public int getId() {
-        return id;
+        return ID;
     }
-
 }
