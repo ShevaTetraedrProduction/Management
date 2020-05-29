@@ -200,12 +200,12 @@ public class StudentController implements Initializable {
 
     void delElement(int student_id) {
         String query = "DELETE FROM grades_table WHERE student_id = ?";
-        HandlerDb.executeQuery(query, new int[]{student_id});
-        int user_id = HandlerDb.getOneValue("SELECT user_id FROM students_table WHERE student_id = ?;", new int[]{student_id});
+        HandlerDb.executeQuery(query, new Integer[]{student_id});
+        int user_id = HandlerDb.getOneValue("SELECT user_id FROM students_table WHERE student_id = ?;", new Integer[]{student_id});
         query = "DELETE FROM students_table WHERE student_id= ?;";
-        HandlerDb.executeQuery(query, new int[]{student_id});
+        HandlerDb.executeQuery(query, new Integer[]{student_id});
         query = "DELETE FROM users_table WHERE user_id= ?;";
-        HandlerDb.executeQuery(query, new int[]{user_id});
+        HandlerDb.executeQuery(query, new Integer[]{user_id});
         //*student_comboBox.getItems().clear();
         //*HelpMethod.fillStudent(student_comboBox);
     }
