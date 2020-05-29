@@ -87,9 +87,9 @@ public class optionController implements Initializable {
 
     public static String getName(int id) {
         String name = HandlerDb.getOneStr(
-            "SELECT first_name FROM students_table WHERE user_id = ?", new int[]{id});
+            "SELECT first_name FROM students_table WHERE user_id = ?", new Integer[]{id});
         String lastName = HandlerDb.getOneStr(
-            "SELECT last_name FROM students_table WHERE user_id = ?", new int[]{id});
+            "SELECT last_name FROM students_table WHERE user_id = ?", new Integer[]{id});
         return name + " " + lastName;
     }
 }
