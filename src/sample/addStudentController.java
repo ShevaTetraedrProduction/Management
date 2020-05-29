@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 public class addStudentController implements Initializable {
     @FXML
     private AnchorPane mainPane;
-
     @FXML
     private Pane myPane;
 
@@ -47,7 +46,6 @@ public class addStudentController implements Initializable {
         int userId;
         clearStar();
         if (check(name, lastName, nickName, group, year)) {
-
             HelpMethod.Message(COLORS.GREEN, "Всі поля заповнені");
             if (!HandlerDb.checkIsUnique("SELECT * FROM users_table WHERE login = ?;", new String[]{nickName})) {
                 clearStar();
@@ -101,7 +99,6 @@ public class addStudentController implements Initializable {
     private boolean isEmpty(String s) {
         return s.length() == 0;
     }
-
     private boolean isEmpty(int i) {
         return i == 0;
     }

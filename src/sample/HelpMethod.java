@@ -93,21 +93,7 @@ public class HelpMethod {
         }
     }
     //the process of opening a window and not close the previous
-    private static void openNewWindow(AnchorPane mainPane, String s, String title) {
-        Parent Window;
-        try {
-            FXMLLoader loader = new FXMLLoader(HelpMethod.class.getResource(s));
-            Window = loader.load();
-            Scene mainScene = new Scene(Window);
-            Stage newWindow = new Stage();
-            newWindow.setTitle(title);
-            newWindow.setScene(mainScene);
-            newWindow.centerOnScreen();
-            newWindow.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public static void closeWindow(AnchorPane mainPane) {
         // get a handle to the stage

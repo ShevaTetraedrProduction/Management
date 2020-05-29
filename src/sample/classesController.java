@@ -191,7 +191,6 @@ public class classesController implements Initializable {
         col_numb.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_group.setCellValueFactory(new PropertyValueFactory<>("group"));
         col_class.setCellValueFactory(new PropertyValueFactory<>("name"));
-
         // add button 'DEL' to every row
         Callback<TableColumn<Class, JFXButton>, TableCell<Class, JFXButton>> cellFactory = (param) -> {
             final TableCell<Class, JFXButton> cell = new TableCell<Class, JFXButton>() {
@@ -218,6 +217,7 @@ public class classesController implements Initializable {
             return cell;
         };
         col_del.setCellFactory(cellFactory);
+
         classes_table.setItems(classesData);
     }
 
