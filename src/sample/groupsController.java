@@ -136,7 +136,7 @@ public class groupsController implements Initializable {
     }
 
     boolean checkDelElement(int id) {
-        if (!HandlerDb.checkIsUnique("SELECT * FROM students_table WHERE group_id = ?;", new int[]{id})) {
+        if (!HandlerDb.checkIsUnique("SELECT * FROM students_table WHERE group_id = ?;", new Integer[]{id})) {
             HelpMethod.Message(COLORS.RED, "Групу не можливо видалити");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Групу не можна видалити");
@@ -181,7 +181,7 @@ public class groupsController implements Initializable {
         if (!checkDelElement(group_id))
             return;
         String query = "DELETE FROM groups_table WHERE group_id = ?;";
-        HandlerDb.executeQuery(query, new int[]{group_id});
+        HandlerDb.executeQuery(query, new Integer[]{group_id});
         HelpMethod.Message(COLORS.GREEN, "Групу " + name + " видалено");
         delGroup_comboBox.getItems().clear();
         HelpMethod.fillGroup(delGroup_comboBox);

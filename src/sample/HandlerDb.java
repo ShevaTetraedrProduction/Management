@@ -213,7 +213,6 @@ public class HandlerDb {
         return res;
     }
 
-
     public static String[] getInformationStudent(int user_id) {
         String query = "SELECT s.user_id, s.first_name, s.last_name, g.group_name, s.year, u.accessLevel " +
                 "FROM students_table s LEFT JOIN groups_table g on s.group_id = g.group_id " +

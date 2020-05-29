@@ -69,11 +69,11 @@ public class addStudentController implements Initializable {
                     "VALUES (" + userId + ",?,?," + groupId + "," + year + ");";
             HandlerDb.executeQuery(query, new String[]{name, lastName});
             query = "SELECT student_id FROM students_table WHERE user_id = ?";
-            int std_id = HandlerDb.getOneValue(query, new int[]{userId});
+            int std_id = HandlerDb.getOneValue(query, new Integer[]{userId});
 
             query = "INSERT INTO grades_table(student_id, group_id, class_id) SELECT std.student_id, gc.group_id, class_id" +
                     " FROM groupClasses_table gc  CROSS JOIN students_table std WHERE std.group_id = gc.group_id AND std.student_id = ?;";
-            HandlerDb.executeQuery(query, new int[]{std_id});
+            HandlerDb.executeQuery(query, new Integer[]{std_id});
             clearFields();
         }
     }

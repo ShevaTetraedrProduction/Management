@@ -157,7 +157,7 @@ public class journalController implements Initializable {
                 query = "SELECT grades FROM grades_table WHERE student_id = " + ID + ";";
                 journal.setNameJ(resultSet.getString(2));
                 journal.setLast_nameJ(resultSet.getString(3));
-                if (HandlerDb.checkIsUnique(query, new int[]{ID}))
+                if (HandlerDb.checkIsUnique(query, new Integer[]{ID}))
                 journal.setSubjectsJ(HandlerDb.getList(query));
                 gratesData.add(journal);
             }
@@ -209,7 +209,7 @@ public class journalController implements Initializable {
 
     double gpa(int id) {
         String query = "SELECT AVG(grades) FROM grades_table WHERE student_id = ?";
-        return HandlerDb.getOneValue(query, new int[]{id});
+        return HandlerDb.getOneValue(query, new Integer[]{id});
     }
 
     void search() {

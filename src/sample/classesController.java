@@ -130,13 +130,13 @@ public class classesController implements Initializable {
 
             int class_id = HandlerDb.getOneValue("SELECT class_id FROM classes_table WHERE name = ?;", new String[]{subject});
 
-            if (!HandlerDb.checkIsUnique("SELECT * FROM groupClasses_table WHERE class_id = ? AND group_id = ?", new int[]{class_id, GROUP_ID}))
+            if (!HandlerDb.checkIsUnique("SELECT * FROM groupClasses_table WHERE class_id = ? AND group_id = ?", new Integer[]{class_id, GROUP_ID}))
                 HelpMethod.Message(COLORS.YELLOW, "Така дисципліна уже додана в групу");
             else {
-                HandlerDb.executeQuery("INSERT INTO groupClasses_table(group_id, class_id) VALUES (?, ?);", new int[]{GROUP_ID, class_id});
+                HandlerDb.executeQuery("INSERT INTO groupClasses_table(group_id, class_id) VALUES (?, ?);", new Integer[]{GROUP_ID, class_id});
                 String query = "INSERT INTO grades_table(student_id, group_id, class_id) " +
                         "SELECT std.student_id, gc.group_id, class_id FROM groupClasses_table gc  CROSS JOIN students_table std WHERE  gc.group_id = ? AND gc.class_id = ?;";
-                HandlerDb.executeQuery(query, new int[]{GROUP_ID, class_id});
+                HandlerDb.executeQuery(query, new Integer[]{GROUP_ID, class_id});
             }
             subject_field.setText("");
             initTable();
@@ -161,10 +161,10 @@ public class classesController implements Initializable {
 
     void initTable() {
        // classes_table.getColumns().clear();
-        initCols();
+       initCols();
         // add method in future
         //updateDate()
-      //  initCols2(classesData);
+       // initCols2(classesData);
     }
 
 
@@ -302,11 +302,11 @@ public class classesController implements Initializable {
         String query = "SELECT class_id FROM classes_table WHERE name = ?;";
         int class_id = HandlerDb.getOneValue(query, new String[]{class_name});
         query = "DELETE FROM grades_table WHERE group_id = ? AND class_id = ?;";
-        HandlerDb.executeQuery(query, new int[]{GROUP_ID, class_id});
+        HandlerDb.executeQuery(query, new Integer[]{GROUP_ID, class_id});
         HandlerDb.executeQuery("DELETE FROM groupClasses_table " +
-                "WHERE class_id = ? AND group_id = ?;", new int[]{class_id, GROUP_ID});
+                "WHERE class_id = ? AND group_id = ?;", new Integer[]{class_id, GROUP_ID});
             //DELETE FROM classes_table it's not important. I need think about this process later
-        HandlerDb.executeQuery("DELETE FROM classes_table WHERE class_id = ?", new int[]{class_id});
+        HandlerDb.executeQuery("DELETE FROM classes_table WHERE class_id = ?", new Integer[]{class_id});
         initTable();
         subject_comboBox.getItems().clear();
         HelpMethod.fillClasses(subject_comboBox, GROUP_ID);
