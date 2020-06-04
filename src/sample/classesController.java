@@ -268,4 +268,5 @@ public class classesController implements Initializable {
         // 5. Add sorted (and filtered) data to the table.
         classes_table.setItems(sortedData);
     }
+
 }

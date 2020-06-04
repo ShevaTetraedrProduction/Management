@@ -80,13 +80,9 @@ public class groupsController implements Initializable {
     // init data in columns
     private void initCols() {
         groupsData = FXCollections.observableArrayList();
-        Connection connection = HandlerDb.getConnection();
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
         String query = "SELECT * FROM groups_table";
+        ResultSet resultSet = HandlerDb.getResultSet(query);
         try {
-            statement = connection.prepareStatement(query);
-            resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Group group = new Group();
                 group.setGroup_id(resultSet.getInt("group_id"));
@@ -95,7 +91,6 @@ public class groupsController implements Initializable {
                 groupsData.add(group);
             }
             resultSet.close();
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -129,10 +124,10 @@ public class groupsController implements Initializable {
             };
             return cell;
         };
-        search();
+
         group_delete.setCellFactory(cellFactory);
         groups_table.setItems(groupsData);
-
+       // search();
     }
 
     boolean checkDelElement(int id) {

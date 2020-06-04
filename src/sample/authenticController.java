@@ -30,7 +30,7 @@ public class authenticController implements Initializable {
     private JFXCheckBox show_checkBox;
 
     //id user
-    static int ID;
+    static int ID = -1;
     // it's to don't write password every time (delete this shit when i done all)
     @FXML
     void setGuest_btn(ActionEvent event) {
