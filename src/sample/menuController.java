@@ -23,15 +23,21 @@ public class menuController implements Initializable {
     @FXML
     private ImageView exit_img, student_img, teachers_img, groups_img, options_img, classes_img, journal_img;
 
-    static int ID = new authenticController().getId();
+    int ID = new authenticController().getId();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HelpMethod.rippler(mainPane, myPane);
         String[] information_std = HandlerDb.getInformationStudent(ID);
         String NAME = information_std[1], SURNAME = information_std[2], GROUP = information_std[3], YEAR = information_std[4], ACCESSLEVEL = information_std[5];
         info_label1.setText(info_label1.getText() + " " + NAME + " " + SURNAME);
-        info_label2.setText(info_label2.getText() + " " + GROUP + ", " + YEAR + " курс");
-        info_label3.setText(info_label3.getText() + (ACCESSLEVEL.equals("0") ? "студент" : "викладач"));
+        String access = ACCESSLEVEL.equals("0") ? "студент" : (ACCESSLEVEL.equals("1") ? "викладач" : "завкафедри");
+        if (ACCESSLEVEL.equals("0")) {
+            info_label2.setText(info_label2.getText() + " " + GROUP + ", " + YEAR + " курс");
+        }
+        else {
+            info_label2.setVisible(false);
+        }
+            info_label3.setText("Рівень доступу " + access);
 
         HelpMethod.setImage("exit", exit_img);
         HelpMethod.setImage("student", student_img);
@@ -45,23 +51,15 @@ public class menuController implements Initializable {
     @FXML
     void setStudents_btn(ActionEvent event) {HelpMethod.makeFadeOut(mainPane, WINDOWS.STUDENTS);}
     @FXML
-    void setExit_btn(ActionEvent event) {
-        HelpMethod.makeFadeOut(mainPane,WINDOWS.Authentic);
-    }
+    void setExit_btn(ActionEvent event) { HelpMethod.makeFadeOut(mainPane,WINDOWS.Authentic);   }
     @FXML
-    void setClose_btn(ActionEvent event) {
-        HelpMethod.closeWindow(mainPane);
-    }
+    void setClose_btn(ActionEvent event) {  HelpMethod.closeWindow(mainPane); }
     @FXML
-    void setGroups_btn(ActionEvent event) {
-        HelpMethod.makeFadeOut(mainPane,WINDOWS.GROUPS);
-    }
+    void setGroups_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane,WINDOWS.GROUPS); }
     @FXML
-    void setClasses_btn(ActionEvent event) {
-        HelpMethod.makeFadeOut(mainPane, WINDOWS.CLASSES);
-    }
+    void setClasses_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, WINDOWS.CLASSES); }
     @FXML
-    void setJournal_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, WINDOWS.JOURNAL);    }
+    void setJournal_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, WINDOWS.JOURNAL);  }
     @FXML
     void setOption_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, WINDOWS.OPTION);}
 
