@@ -12,12 +12,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("fxml/authentic.fxml"));
         primaryStage.setTitle("Журнал успішності студента");
-        //with = 1525, height = 850
-        //900 500
-        primaryStage.setScene(new Scene(root, 500, 400));
+        //with = 1525, height = 850   //900 500
         //System.out.println(primaryStage.getWidth());
+        primaryStage.setScene(new Scene(root, 500, 400));
         primaryStage.centerOnScreen();
-        // забирає стандартну рамочку
+        // забирає стандартну рамку
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
         //primaryStage.hide();

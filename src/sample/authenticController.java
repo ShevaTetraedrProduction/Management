@@ -38,8 +38,7 @@ public class authenticController implements Initializable {
         password.setText("шевчук");*/
         email.setText("admin");
         password.setText("admin");
-        if (checkAuth())
-            HelpMethod.guest(mainPane);
+        if (checkAuth())     HelpMethod.guest(mainPane);
             //HelpMethod.makeFadeOut(mainPane, WINDOWS.MENU);
     }
     @FXML
@@ -49,6 +48,7 @@ public class authenticController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HelpMethod.rippler(mainPane, myPane);
+        ID = -1;
         checkBoxSelected();
     }
 
@@ -97,14 +97,18 @@ public class authenticController implements Initializable {
 
     private boolean checkAuth() {
         String query = "SELECT  user_id FROM  users_table WHERE  login = ? && hash_password = ?;";
-        System.out.println(HelpMethod.getMd5(password.getText()));
         if (!HandlerDb.checkIsUnique(query, new String[]{email.getText(), HelpMethod.getMd5(password.getText())})) {
-            ID = HandlerDb.getOneValue(query, new String[]{email.getText(), HelpMethod.getMd5(password.getText())});
+            setId(HandlerDb.getOneValue(query, new String[]{email.getText(), HelpMethod.getMd5(password.getText())}));
            // ID = HandlerDb.getID(email.getText(), HelpMethod.getMd5(password.getText()));
             return true;
         }
             return false;
     }
 
-    public int getId() {   return ID;   }
+    public int getId() {
+        return ID;
+    }
+    public void setId(int id) {
+        ID = id;
+    }
 }
