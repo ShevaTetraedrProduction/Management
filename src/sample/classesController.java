@@ -57,7 +57,7 @@ public class classesController implements Initializable {
     // IT is parameters which are currently active(SELECTED in ComboBox)
     String GROUP_NAME = "";
     int GROUP_ID = -1;
-    static final int ID = new authenticController().getId();
+    int ID = new authenticController().getId();
 
     // navigation
     @FXML

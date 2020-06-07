@@ -54,7 +54,7 @@ public class StudentController implements Initializable {
     @FXML
     private ImageView search_img;
 
-    static final int ID = new authenticController().getId();
+    int ID = new authenticController().getId();
     String GROUP_NAME = "";
     int GROUP_ID = -1;
 
