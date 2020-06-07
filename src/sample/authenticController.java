@@ -50,6 +50,8 @@ public class authenticController implements Initializable {
         HelpMethod.rippler(mainPane, myPane);
         ID = -1;
         checkBoxSelected();
+        email.setText("iryna");
+        password.setText("шевчук");
     }
 
     @FXML
