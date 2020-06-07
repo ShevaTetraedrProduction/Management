@@ -16,24 +16,18 @@ public class optionController implements Initializable {
 
     @FXML
     private AnchorPane mainPane;
-
     @FXML
     private Pane myPane;
-
     @FXML
     private JFXButton classes_btn, students_btn, journlal_btn, menu_btn, exit_btn;
-
     @FXML
     private Label info_label;
-
     @FXML
     private JFXButton changeLogin_btn, changePassword_btn;
-
-
     @FXML
     private TextField password_field, nickName_field;
 
-    static int id;
+    int id = new authenticController().getId();
 
     @FXML
     void setChangeLogin_btn(ActionEvent event) {
@@ -81,7 +75,6 @@ public class optionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        id = new menuController().getId();
         info_label.setText(info_label.getText() + "  " +  getName(id));
     }
 

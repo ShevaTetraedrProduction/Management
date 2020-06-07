@@ -3,9 +3,7 @@ package sample;
 import com.jfoenix.controls.JFXComboBox;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @SuppressWarnings("Duplicates")
 public class HandlerDb {
@@ -213,13 +211,29 @@ public class HandlerDb {
         return res;
     }
 
-    public static String[] getInformationStudent(int user_id) {
+ /*   public static String[] getInformationStudent2(int user_id) {
         String query = "SELECT s.user_id, s.first_name, s.last_name, g.group_name, s.year, u.accessLevel " +
                 "FROM students_table s LEFT JOIN groups_table g on s.group_id = g.group_id " +
                 "LEFT JOIN users_table u ON u.user_id = s.user_id WHERE s.user_id = ?;";
         String inf = HandlerDb.getAllStr(query, new Integer[]{user_id});
         String[] res = inf.split(",");
         return res;
+    }*/
+
+    public static Map getInformationStudent(int user_id) {
+        String query = "SELECT s.user_id, s.first_name, s.last_name, g.group_name, s.year, u.accessLevel " +
+                "FROM students_table s LEFT JOIN groups_table g on s.group_id = g.group_id " +
+                "LEFT JOIN users_table u ON u.user_id = s.user_id WHERE s.user_id = ?;";
+        String inf = HandlerDb.getAllStr(query, new Integer[]{user_id});
+        Map<String, String> information = new HashMap<>();
+        String[] res = inf.split(",");
+        information.put("Id", res[0]);
+        information.put("Name", res[1]);
+        information.put("Last", res[2]);
+        information.put("Group", res[3]);
+        information.put("Year", res[4]);
+        information.put("Access", res[5]);
+        return information;
     }
 
     public static ResultSet fillComboBox(JFXComboBox comboBox, String query, int k, int z) {

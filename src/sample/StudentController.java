@@ -23,6 +23,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class StudentController implements Initializable {
@@ -113,13 +114,14 @@ public class StudentController implements Initializable {
     }
 
     private void initCols() {
-        String[] inf = HandlerDb.getInformationStudent(ID);
+        //String[] inf = HandlerDb.getInformationStudent(ID);
+        Map<String, String> mapInf = HandlerDb.getInformationStudent(ID);
         studentsData = FXCollections.observableArrayList();
         Connection connection = HandlerDb.getConnection();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         String query = "SELECT s.student_id,s.first_name, s.last_name, g.group_name, s.year FROM students_table s" +
-                " LEFT JOIN groups_table g on s.group_id = g.group_id WHERE g.group_name = '" + inf[3]  + "';";
+                " LEFT JOIN groups_table g on s.group_id = g.group_id WHERE g.group_name = '" + mapInf.get("Group") + "';";
         try {
             statement = connection.prepareStatement(query);
             resultSet = statement.executeQuery(query);

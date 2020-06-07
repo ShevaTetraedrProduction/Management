@@ -20,6 +20,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class classesController implements Initializable {
@@ -77,7 +78,8 @@ public class classesController implements Initializable {
         HelpMethod.rippler(mainPane, myPane);
         HelpMethod.fillGroup(group_comboBox);
         HelpMethod.setImage("search", search_img);
-        String[] infStd = HandlerDb.getInformationStudent(ID);
+       // String[] infStd = HandlerDb.getInformationStudent(ID);
+        Map<String, String> mapInf = HandlerDb.getInformationStudent(ID);
             //Method  comboBox to always look on  the changes in value
             group_comboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
                 @Override
@@ -97,8 +99,9 @@ public class classesController implements Initializable {
                 }
             });
 
-        if (infStd[5].equals("0")){
-            group_comboBox.getSelectionModel().select(infStd[3]);
+            //
+        if (mapInf.get("Access").equals("0")){
+            group_comboBox.getSelectionModel().select(mapInf.get("Group"));
             group_comboBox.setVisible(false);
             addSubject_btn.setVisible(false);
             delSubject_btn.setVisible(false);

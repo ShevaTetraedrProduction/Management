@@ -24,10 +24,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class journalController implements Initializable {
     @FXML
@@ -83,7 +80,8 @@ public class journalController implements Initializable {
         HelpMethod.setImage("search", search_img);
         HelpMethod.fillGroup(group_comboBox);
 
-        String[] infStd = HandlerDb.getInformationStudent(ID);
+        //String[] infStd = HandlerDb.getInformationStudent(ID);
+        Map<String, String> mapInf = HandlerDb.getInformationStudent(ID);
 
 
         group_comboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -104,8 +102,8 @@ public class journalController implements Initializable {
         });
 
 
-        if (infStd[5].equals("0")){
-            group_comboBox.getSelectionModel().select(infStd[3]);
+        if (mapInf.get("Access").equals("0")){
+            group_comboBox.getSelectionModel().select(mapInf.get("Group"));
             group_comboBox.setVisible(false);
             adm_label.setVisible(false);
         }

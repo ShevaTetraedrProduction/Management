@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class menuController implements Initializable {
@@ -27,16 +28,14 @@ public class menuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HelpMethod.rippler(mainPane, myPane);
-        String[] information_std = HandlerDb.getInformationStudent(ID);
-        String NAME = information_std[1], SURNAME = information_std[2], GROUP = information_std[3], YEAR = information_std[4], ACCESSLEVEL = information_std[5];
-        info_label1.setText(info_label1.getText() + " " + NAME + " " + SURNAME);
-        String access = ACCESSLEVEL.equals("0") ? "студент" : (ACCESSLEVEL.equals("1") ? "викладач" : "завкафедри");
-        if (ACCESSLEVEL.equals("0")) {
-            info_label2.setText(info_label2.getText() + " " + GROUP + ", " + YEAR + " курс");
-        }
-        else {
+        Map<String, String> mapInf = HandlerDb.getInformationStudent(ID);
+        info_label1.setText(info_label1.getText() + " " + mapInf.get("Name") + " " + mapInf.get("Last"));
+        String access = mapInf.get("Access").equals("0") ? "студент" : (mapInf.get("Access").equals("1") ? "викладач" : "завкафедри");
+        info_label2.setText(info_label2.getText() + " " + mapInf.get("Group") + ", " + mapInf.get("Year") + " курс");
+
+        if (!mapInf.get("Access").equals("0"))
             info_label2.setVisible(false);
-        }
+
             info_label3.setText("Рівень доступу " + access);
 
         HelpMethod.setImage("exit", exit_img);
@@ -62,8 +61,5 @@ public class menuController implements Initializable {
     void setJournal_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, WINDOWS.JOURNAL);  }
     @FXML
     void setOption_btn(ActionEvent event) {  HelpMethod.makeFadeOut(mainPane, WINDOWS.OPTION);}
-
-    public int getId() {
-        return ID;
-    }
+    
 }
