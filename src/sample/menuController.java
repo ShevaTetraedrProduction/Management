@@ -29,14 +29,14 @@ public class menuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HelpMethod.rippler(mainPane, myPane);
         Map<String, String> mapInf = HandlerDb.getInformationStudent(ID);
-        info_label1.setText(info_label1.getText() + " " + mapInf.get("Name") + " " + mapInf.get("Last"));
+        info_label1.setText(info_label1.getText() + " " + mapInf.get("Name"));
         String access = mapInf.get("Access").equals("0") ? "студент" : (mapInf.get("Access").equals("1") ? "викладач" : "завкафедри");
         info_label2.setText(info_label2.getText() + " " + mapInf.get("Group") + ", " + mapInf.get("Year") + " курс");
 
         if (!mapInf.get("Access").equals("0"))
             info_label2.setVisible(false);
 
-            info_label3.setText("Рівень доступу " + access);
+            info_label3.setText("Рівень доступу: " + access);
 
         HelpMethod.setImage("exit", exit_img);
         HelpMethod.setImage("student", student_img);
