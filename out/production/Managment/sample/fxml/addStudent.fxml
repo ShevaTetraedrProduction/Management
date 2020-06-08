@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.addStudentController">
+   <children>
+      <Pane fx:id="myPane" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #B7B7B7;">
+         <children>
+            <Text fill="#6556c3" layoutX="175.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Студент" textAlignment="CENTER" wrappingWidth="150.0">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <HBox layoutY="342.0" prefHeight="50.0" prefWidth="500.0">
+               <children>
+                  <JFXButton fx:id="cancel_btn" focusTraversable="false" onAction="#setCancel_btn" prefHeight="98.0" prefWidth="300.0" ripplerFill="#6fd753" style="-fx-background-color: #F5F5F5; -fx-cursor: hand;" text="Скасувати" textFill="#975aac">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="addStudent_btn" focusTraversable="false" onAction="#setAddStudent_btn" prefHeight="98.0" prefWidth="300.0" ripplerFill="#6fd753" style="-fx-background-color: #B27EE2;" text="Добавити" textFill="#e9e9e9">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <VBox alignment="TOP_CENTER" layoutX="90.0" layoutY="56.0" prefHeight="279.0" prefWidth="320.0" spacing="25.0">
+               <children>
+                  <TextField fx:id="name_field" focusTraversable="false" prefHeight="30.0" prefWidth="320.0" promptText="Ім'я" style="-fx-border-radius: 40;">
+                     <font>
+                        <Font size="15.0" />
+                     </font></TextField>
+                  <TextField fx:id="lastName_field" focusTraversable="false" prefHeight="30.0" prefWidth="300.0" promptText="Прізвище" style="-fx-border-radius: 40;">
+                     <font>
+                        <Font size="15.0" />
+                     </font></TextField>
+                  <VBox prefHeight="74.0" prefWidth="320.0">
+                     <children>
+                        <TextField fx:id="nickName_field" focusTraversable="false" prefHeight="30.0" prefWidth="320.0" promptText="nickName">
+                           <font>
+                              <Font name="Nirmala UI Semilight" size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label fx:id="error_message" alignment="CENTER" prefHeight="58.0" prefWidth="319.0" textFill="#f50505">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <JFXComboBox fx:id="group_comboBox" focusTraversable="false" prefHeight="25.0" prefWidth="320.0" promptText="Оберіть групу" />
+                  <VBox prefHeight="40.0" prefWidth="320.0">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="91.0" text="Оберіть курс" />
+                        <JFXSlider fx:id="year_slider" focusTraversable="false" majorTickUnit="1.0" max="5.0" minorTickCount="0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </JFXSlider>
+                     </children>
+                  </VBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </VBox>
+            <Label fx:id="star3" layoutX="425.0" layoutY="170.0" text="*" textFill="RED" visible="false">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <Label fx:id="star2" layoutX="425.0" layoutY="110.0" text="*" textFill="RED" visible="false">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <Label fx:id="star1" layoutX="425.0" layoutY="50.0" text="*" textFill="RED" visible="false">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <Label fx:id="star4" layoutX="425.0" layoutY="245.0" text="*" textFill="RED" visible="false">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+            <Label fx:id="star5" layoutX="425.0" layoutY="290.0" text="*" textFill="RED" visible="false">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

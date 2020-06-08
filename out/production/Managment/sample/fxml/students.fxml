@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" style="-fx-background-color: #ece2dd;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.StudentController">
+   <children>
+      <Pane fx:id="myPane" prefHeight="500.0" prefWidth="900.0">
+         <children>
+            <Pane prefHeight="500.0" prefWidth="170.0" style="-fx-background-color: #275362; -fx-border-color: #000000; -fx-border-style: solid; -fx-border-image-width: 100; -fx-border-insets: 0;">
+               <children>
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="465.0" prefWidth="150.0" spacing="40.0">
+                     <children>
+                        <JFXButton fx:id="classes_btn" onAction="#setClasses_btn" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #abbd8c; -fx-cursor: hand;" text="Предмети" textFill="#275362">
+                           <font>
+                              <Font name="Nirmala UI Semilight" size="25.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets top="10.0" />
+                           </opaqueInsets>
+                        </JFXButton>
+                        <JFXButton fx:id="groups_btn" onAction="#setGroups_btn" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #abbd8c; -fx-cursor: hand;" text="Групи" textFill="#275362">
+                           <font>
+                              <Font name="Nirmala UI Semilight" size="25.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="journal_btn" onAction="#setJournal_btn" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #abbd8c;" text="Журнал" textFill="#275362">
+                           <font>
+                              <Font name="Nirmala UI Semilight" size="25.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="menu_btn" onAction="#setMenu_btn" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #abbd8c; -fx-cursor: hand;" text="Меню" textFill="#275362">
+                           <font>
+                              <Font name="Nirmala UI Semilight" size="25.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="exit_btn" onAction="#setExit_btn" prefHeight="70.0" prefWidth="150.0" style="-fx-background-color: #abbd8c; -fx-cursor: hand;" text="Вихід" textFill="#275362">
+                           <font>
+                              <Font name="Nirmala UI Semilight" size="25.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets bottom="10.0" />
+                           </opaqueInsets>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <Pane layoutX="170.0" prefHeight="500.0" prefWidth="730.0">
+               <children>
+                  <JFXComboBox fx:id="group_comboBox" layoutX="154.0" layoutY="124.0" prefHeight="35.0" prefWidth="175.0" />
+                  <Label alignment="TOP_CENTER" layoutX="255.0" layoutY="25.0" prefHeight="58.0" prefWidth="175.0" text="Студенти" textFill="#275362">
+                     <font>
+                        <Font name="Nirmala UI Semilight" size="40.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="adm_label" layoutX="14.0" layoutY="124.0" prefHeight="50.0" prefWidth="125.0" text="Обрати групу" />
+                  <Pane layoutX="-1.0" layoutY="162.0" prefHeight="339.0" prefWidth="730.0">
+                     <children>
+                        <Pane layoutX="280.0" layoutY="39.0" prefHeight="300.0" prefWidth="450.0">
+                           <children>
+                              <Label fx:id="console_label" prefHeight="364.0" prefWidth="425.0" style="-fx-background-color: #ffffff;" visible="false" />
+                              <TableView fx:id="students_table" prefHeight="300.0" prefWidth="450.0">
+                                <columns>
+                                  <TableColumn fx:id="id_col" prefWidth="75.0" text="№" />
+                                  <TableColumn fx:id="name_col" prefWidth="108.800048828125" text="Ім'я" />
+                                    <TableColumn fx:id="lastName_col" prefWidth="76.0" text="Прізвище" />
+                                    <TableColumn fx:id="group_col" prefWidth="40.79998779296875" text="Група" />
+                                    <TableColumn fx:id="year_col" prefWidth="75.0" text="Курс" />
+                                    <TableColumn fx:id="del_col" prefWidth="75.0" text="Видалити" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </Pane>
+                        <TextField fx:id="search_field" layoutX="464.0" prefHeight="35.0" prefWidth="196.0" promptText="пошук" />
+                        <JFXButton layoutX="660.0" prefHeight="35.0" prefWidth="58.0" text=" ">
+                           <graphic>
+                              <ImageView fx:id="search_img" fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../img/search.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="addStudent_btn" layoutX="98.0" layoutY="290.0" onAction="#setAddStudent_btn" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: #407a61;" text="Добавити Студента" textFill="#f8f1f4">
+                           <font>
+                              <Font name="Nirmala UI Semilight" size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
