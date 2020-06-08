@@ -34,10 +34,11 @@
                            <children>
                               <TableView fx:id="classes_table" prefHeight="325.0" prefWidth="349.0">
                                 <columns>
-                                  <TableColumn fx:id="col_numb" prefWidth="47.199951171875" text="№" />
-                                  <TableColumn fx:id="col_group" prefWidth="56.79998779296875" text="Група" />
-                                    <TableColumn fx:id="col_class" prefWidth="158.4000244140625" text="Предмет" />
-                                    <TableColumn fx:id="col_del" prefWidth="78.400146484375" text="Видалити" />
+                                  <TableColumn fx:id="col_numb" minWidth="0.0" prefWidth="29.5999755859375" text="№" />
+                                  <TableColumn fx:id="col_group" prefWidth="54.4000244140625" text="Група" visible="false" />
+                                    <TableColumn fx:id="col_class" prefWidth="123.20001220703125" text="Предмет" />
+                                    <TableColumn fx:id="col_teacher" minWidth="0.0" prefWidth="131.20001220703125" text="Викладач" />
+                                    <TableColumn fx:id="col_del" prefWidth="65.5999755859375" text="Видалити" />
                                 </columns>
                               </TableView>
                            </children>

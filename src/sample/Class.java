@@ -10,6 +10,7 @@ public class Class extends RecursiveTreeObject<Class> {
     private final IntegerProperty idC = new SimpleIntegerProperty();
     private final StringProperty nameC = new SimpleStringProperty();
     private final StringProperty groupC = new SimpleStringProperty();
+    private final StringProperty teacherC = new SimpleStringProperty();
 
 
     public int getId() {
@@ -47,4 +48,10 @@ public class Class extends RecursiveTreeObject<Class> {
     public void setGroup(String groupC) {
         this.groupC.set(groupC);
     }
+
+    public String getTeacher() { return teacherC.get(); }
+
+    public StringProperty teacherProperty() { return teacherC; }
+
+    public void setTeacher(String teacherC) { this.teacherC.set(teacherC); }
 }

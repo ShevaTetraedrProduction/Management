@@ -221,18 +221,35 @@ public class HandlerDb {
     }*/
 
     public static Map getInformationStudent(int user_id) {
-        String query = "SELECT s.user_id, s.first_name, s.last_name, g.group_name, s.year, u.accessLevel " +
-                "FROM students_table s LEFT JOIN groups_table g on s.group_id = g.group_id " +
-                "LEFT JOIN users_table u ON u.user_id = s.user_id WHERE s.user_id = ?;";
-        String inf = HandlerDb.getAllStr(query, new Integer[]{user_id});
+        String query = "SELECT accessLevel FROM users_table WHERE user_id = ?";
+        int access = getOneValue(query, new Integer[]{user_id});
+        String[] res = null;
         Map<String, String> information = new HashMap<>();
-        String[] res = inf.split(",");
+        information.put("Access", Integer.toString(access));
+        StringBuilder name = new StringBuilder();
+
+        if (access == 0) {
+            query = "SELECT student_id, s.first_name, s.last_name, g.group_name, s.year " +
+                    "FROM students_table s LEFT JOIN groups_table g on s.group_id = g.group_id " +
+                    "LEFT JOIN users_table u ON u.user_id = s.user_id WHERE s.user_id = ?;";
+            String inf = HandlerDb.getAllStr(query, new Integer[]{user_id});
+            res = inf.split(",");
+            information.put("Group", res[3]);
+            information.put("Year", res[4]);
+        }
+        else {
+            query = "SELECT teacher_id, first_name, last_name FROM teachers_table WHERE user_id = ?;";
+            String inf = HandlerDb.getAllStr(query, new Integer[]{user_id});
+            res = inf.split(",");
+            if (res.length == 1) {
+                information.put("Id", "");
+                information.put("Name", "Невідомий");
+                return information;
+            }
+        }
+
         information.put("Id", res[0]);
-        information.put("Name", res[1]);
-        information.put("Last", res[2]);
-        information.put("Group", res[3]);
-        information.put("Year", res[4]);
-        information.put("Access", res[5]);
+        information.put("Name", name.append(res[1] + " " + res[2]).toString());
         return information;
     }
 

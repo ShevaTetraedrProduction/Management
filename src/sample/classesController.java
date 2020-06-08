@@ -36,7 +36,7 @@ public class classesController implements Initializable {
     @FXML
     private TableColumn<Class, Integer> col_numb;
     @FXML
-    private TableColumn<Class, String> col_group, col_class;
+    private TableColumn<Class, String> col_group, col_class, col_teacher;
     @FXML
     private TableColumn<Class, JFXButton> col_del;
 
@@ -171,9 +171,10 @@ public class classesController implements Initializable {
     // init data in columns
     void initCols() {
         classesData = FXCollections.observableArrayList();
-        String query = "SELECT gt.group_name,c.name FROM groupClasses_table gc " +
+        String query = "SELECT gt.group_name,c.name,  concat(t.first_name,' ', last_name) FROM groupClasses_table gc " +
                 "LEFT JOIN classes_table c on gc.class_id = c.class_id " +
                 "LEFT JOIN groups_table gt on gc.group_id = gt.group_id " +
+                "LEFT JOIN teachers_table t ON gc.teacher_id = t.teacher_id " +
                 "WHERE gt.group_name = ?;";
         ResultSet resultSet = HandlerDb.getResultSet(query, new String[]{GROUP_NAME});
         try {
@@ -183,6 +184,7 @@ public class classesController implements Initializable {
                 subject.setId(numb++);
                 subject.setGroup(resultSet.getString(1));
                 subject.setName(resultSet.getString(2));
+                subject.setTeacher(resultSet.getString(3));
                 classesData.add(subject);
             }
             resultSet.close();
@@ -194,6 +196,7 @@ public class classesController implements Initializable {
         col_numb.setCellValueFactory(new PropertyValueFactory<>("id"));
         col_group.setCellValueFactory(new PropertyValueFactory<>("group"));
         col_class.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_teacher.setCellValueFactory(new PropertyValueFactory<>("teacher"));
         // add button 'DEL' to every row
         Callback<TableColumn<Class, JFXButton>, TableCell<Class, JFXButton>> cellFactory = (param) -> {
             final TableCell<Class, JFXButton> cell = new TableCell<Class, JFXButton>() {
@@ -260,6 +263,7 @@ public class classesController implements Initializable {
                     return true; // Filter matches last name.
                 else if (cl.getGroup().toLowerCase().indexOf(lowerCaseFilter) != -1)
                     return true;
+                //else if (cl.getTeacher().toLowerCase().indexOf(lowerCaseFilter) != -1)      return true;
                 return false; // Does not match.
             });
         });
