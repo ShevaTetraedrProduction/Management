@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXComboBox;
 
 import java.sql.*;
 import java.util.*;
+import java.util.logging.Logger;
 
 @SuppressWarnings("Duplicates")
 public class HandlerDb {
@@ -15,15 +16,17 @@ public class HandlerDb {
                 "&useSSL=false" +
                 "&useUnicode=true&characterEncoding=UTF-8";
         //useUnicode=true&characterEncoding=UTF-8   для відображеня кирилиці у базі даних.
-        /*
+
+/*
+ //HelpMethod.Message(HelpMethod.WHITE,"JDBC Driver has been registered!");
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            HelpMethod.Message(HelpMethod.RED, "Where is your MySQL JDBC Driver?");
+            //HelpMethod.Message(HelpMethod.RED, "Where is your MySQL JDBC Driver?");
             Logger.getLogger(HandlerDb.class.getName()).log(Level.SEVERE, null, e);
         }
-         */
-        //HelpMethod.Message(HelpMethod.WHITE,"JDBC Driver has been registered!");
+ */
+
         HelpMethod.Message(COLORS.WHITE, "Робота з базою данних(З'єднання)");
         try {
             connection = DriverManager.getConnection(connectionString, "root", "");
@@ -239,12 +242,13 @@ public class HandlerDb {
         }
         else {
             query = "SELECT teacher_id, first_name, last_name FROM teachers_table WHERE user_id = ?;";
-            String inf = HandlerDb.getAllStr(query, new Integer[]{user_id});
-            res = inf.split(",");
-            if (res.length == 1) {
-                information.put("Id", "");
-                information.put("Name", "Невідомий");
-                return information;
+            if (checkIsUnique(query, new Integer[]{user_id})) {
+                    information.put("Id", "");
+                    information.put("Name", "Невідомий");
+                    return information;
+            } else {
+                String inf = HandlerDb.getAllStr(query, new Integer[]{user_id});
+                res = inf.split(",");
             }
         }
 
