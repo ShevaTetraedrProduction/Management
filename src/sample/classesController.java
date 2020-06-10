@@ -38,7 +38,7 @@ public class classesController implements Initializable {
     @FXML
     private TableColumn<Class, String> col_group, col_class, col_teacher;
     @FXML
-    private TableColumn<Class, JFXButton> col_del;
+    private TableColumn<Class, JFXButton> col_edit;
 
     @FXML
     private JFXComboBox<String> subject_comboBox, group_comboBox;
@@ -106,7 +106,7 @@ public class classesController implements Initializable {
             addSubject_btn.setVisible(false);
             delSubject_btn.setVisible(false);
             adm_label.setVisible(false);
-            col_del.setVisible(false);
+            col_edit.setVisible(false);
             col_group.setVisible(false);
         }
 
@@ -198,6 +198,7 @@ public class classesController implements Initializable {
         col_class.setCellValueFactory(new PropertyValueFactory<>("name"));
         col_teacher.setCellValueFactory(new PropertyValueFactory<>("teacher"));
         // add button 'DEL' to every row
+
         Callback<TableColumn<Class, JFXButton>, TableCell<Class, JFXButton>> cellFactory = (param) -> {
             final TableCell<Class, JFXButton> cell = new TableCell<Class, JFXButton>() {
                 @Override
@@ -209,7 +210,7 @@ public class classesController implements Initializable {
                     } else {
                         final JFXButton delButton = new JFXButton("DEL");
                         delButton.setStyle("-fx-background-color: orangered");
-                        //    delButton.setStyle("-fx-text-fill: whitesmoke"); (not work ;( )
+                        //delButton.setStyle("-fx-text-fill: whitesmoke");       //(not work ;( )
                         // add event to every button
                         delButton.setOnAction(event -> {
                             Class c = getTableView().getItems().get(getIndex());
@@ -222,7 +223,7 @@ public class classesController implements Initializable {
             };
             return cell;
         };
-        col_del.setCellFactory(cellFactory);
+        col_edit.setCellFactory(cellFactory);
 
         classes_table.setItems(classesData);
     }
