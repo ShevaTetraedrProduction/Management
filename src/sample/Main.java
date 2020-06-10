@@ -10,11 +10,12 @@ import javafx.stage.StageStyle;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/authentic.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("fxml/authentic.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/test.fxml"));
         primaryStage.setTitle("Журнал успішності студента");
         //with = 1525, height = 850   //900 500
         //System.out.println(primaryStage.getWidth());
-        primaryStage.setScene(new Scene(root, 500, 400));
+        primaryStage.setScene(new Scene(root, primaryStage.getWidth(), primaryStage.getHeight()));
         primaryStage.centerOnScreen();
         // забирає стандартну рамку
         primaryStage.initStyle(StageStyle.UNDECORATED);
