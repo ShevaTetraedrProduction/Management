@@ -45,6 +45,8 @@ public class addStudentController implements Initializable {
 
         int userId;
         clearStar();
+        HandlerDb.autoIncZero("users_table");
+        HandlerDb.autoIncZero("students_table");
         if (check(name, lastName, nickName, group, year)) {
             HelpMethod.Message(COLORS.GREEN, "Всі поля заповнені");
             if (!HandlerDb.checkIsUnique("SELECT * FROM users_table WHERE login = ?;", new String[]{nickName})) {
@@ -93,6 +95,8 @@ public class addStudentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HelpMethod.rippler(mainPane, myPane);
         HelpMethod.fillGroup(group_comboBox);
+        System.out.println(StudentController.getGROUP_NAME());
+        group_comboBox.getSelectionModel().select(StudentController.getGROUP_NAME());
         year_slider.setValue(0);
     }
 
