@@ -136,6 +136,7 @@ public static void setInvisible(Region[] arr) {  for (Region a : arr) a.setVisib
             while (hashtext.length() < 32) {
                 hashtext = "0" + hashtext;
             }
+           // System.out.println(hashtext);
             return hashtext;
         }
         // For specifying wrong message digest algorithms
