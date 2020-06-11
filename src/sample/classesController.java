@@ -10,6 +10,8 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
@@ -79,20 +81,19 @@ public class classesController implements Initializable {
         HelpMethod.fillGroup(group_comboBox);
         HelpMethod.setImage("search", search_img);
        // String[] infStd = HandlerDb.getInformationStudent(ID);
-        Map<String, String> mapInf = HandlerDb.getInformationStudent(ID);
+        Map<String, String> mapInf = HandlerDb.getInformationUser(ID);
             //Method  comboBox to always look on  the changes in value
             group_comboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
                 @Override
                 public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
                     //classes_table.getColumns().clear();
                     System.out.println(newValue);
-                    editPane.setVisible(true);
+                    HelpMethod.setVisible(new Pane[]{editPane});
                     nameGroup.setText("Предмети для групи: " + newValue);
                     GROUP_NAME = newValue;
                     GROUP_ID = HandlerDb.getOneValue("SELECT group_id FROM groups_table WHERE group_name = ?;", new String[]{GROUP_NAME});
 
                     HelpMethod.fillClasses(subject_comboBox, GROUP_ID);
-                    editPane.setVisible(true);
                     subject_comboBox.getItems().clear();
                     initTable();
                     search();
@@ -102,10 +103,7 @@ public class classesController implements Initializable {
             //
         if (mapInf.get("Access").equals("0")){
             group_comboBox.getSelectionModel().select(mapInf.get("Group"));
-            group_comboBox.setVisible(false);
-            addSubject_btn.setVisible(false);
-            delSubject_btn.setVisible(false);
-            adm_label.setVisible(false);
+            HelpMethod.setInvisible(new Region[]{group_comboBox, addSubject_btn, delSubject_btn, adm_label});
             col_edit.setVisible(false);
             col_group.setVisible(false);
         }
