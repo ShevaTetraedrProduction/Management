@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -28,13 +30,13 @@ public class menuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HelpMethod.rippler(mainPane, myPane);
-        Map<String, String> mapInf = HandlerDb.getInformationStudent(ID);
+        Map<String, String> mapInf = HandlerDb.getInformationUser(ID);
         info_label1.setText(info_label1.getText() + " " + mapInf.get("Name"));
         String access = mapInf.get("Access").equals("0") ? "студент" : (mapInf.get("Access").equals("1") ? "викладач" : "завкафедри");
         info_label2.setText(info_label2.getText() + " " + mapInf.get("Group") + ", " + mapInf.get("Year") + " курс");
 
         if (!mapInf.get("Access").equals("0"))
-            info_label2.setVisible(false);
+            HelpMethod.setInvisible(new Region[]{info_label2});
 
             info_label3.setText("Рівень доступу: " + access);
 

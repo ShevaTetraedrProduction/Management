@@ -17,14 +17,17 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.util.Callback;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class StudentController implements Initializable {
     @FXML
@@ -55,9 +58,12 @@ public class StudentController implements Initializable {
     @FXML
     private ImageView search_img;
 
+
     int ID = new authenticController().getId();
     String GROUP_NAME = "";
     int GROUP_ID = -1;
+    Map<String, String> mapInf = HandlerDb.getInformationUser(ID);
+
 
     // navigation
     @FXML
@@ -84,26 +90,36 @@ public class StudentController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HelpMethod.rippler(mainPane, myPane);
         HelpMethod.setImage("search", search_img);
-        initTable();
+        editPane.setVisible(false);
+        if (mapInf.get("Access").equals("0")) {
+            HelpMethod.setInvisible(new Region[]{group_comboBox, adm_label, addStudent_btn});
+            HelpMethod.setVisible(new Region[]{editPane ,students_table});
+            del_col.setVisible(false);
+            GROUP_NAME = mapInf.get("Group");
+            nameGroup.setText(GROUP_NAME);
+            initTable();
+        }
+
 
         HelpMethod.fillGroup(group_comboBox);
         students_table.setItems(studentsData);
-        search();
+        //search();
 
         //Method  comboBox to always look on  the changes in value
         group_comboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
                 System.out.println(newValue);
-                editPane.setVisible(true);
-                nameGroup.setText("Предмети для групи: " + newValue);
+                HelpMethod.setVisible(new Region[]{editPane});
+
+                nameGroup.setText("Стеденти групи: " + newValue);
                 GROUP_NAME = newValue;
                 GROUP_ID = HandlerDb.getOneValue("SELECT group_id FROM groups_table WHERE group_name = ?;", new String[]{GROUP_NAME});
                 HelpMethod.fillClasses(group_comboBox, GROUP_ID);
-                editPane.setVisible(true);
                 group_comboBox.getItems().clear();
                 initTable();
                 search();
+
             }
         });
 
@@ -114,20 +130,16 @@ public class StudentController implements Initializable {
     }
 
     private void initCols() {
-        //String[] inf = HandlerDb.getInformationStudent(ID);
-        Map<String, String> mapInf = HandlerDb.getInformationStudent(ID);
         studentsData = FXCollections.observableArrayList();
-        Connection connection = HandlerDb.getConnection();
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
         String query = "SELECT s.student_id,s.first_name, s.last_name, g.group_name, s.year FROM students_table s" +
-                " LEFT JOIN groups_table g on s.group_id = g.group_id WHERE g.group_name = '" + mapInf.get("Group") + "';";
+                " LEFT JOIN groups_table g on s.group_id = g.group_id WHERE g.group_name = ?;";
+        ResultSet resultSet = HandlerDb.getResultSet(query, new String[]{GROUP_NAME});
+
         try {
-            statement = connection.prepareStatement(query);
-            resultSet = statement.executeQuery(query);
+            int numb = 1;
             while (resultSet.next()) {
                 Student student = new Student();
-                student.setId(resultSet.getInt("student_id"));
+                student.setId(numb++);
                 student.setName(resultSet.getString("first_name"));
                 student.setLastName(resultSet.getString("last_name"));
                 student.setGroup(resultSet.getString("group_name"));
@@ -171,7 +183,6 @@ public class StudentController implements Initializable {
             del_col.setCellFactory(cellFactory);
             students_table.setItems(studentsData);
             resultSet.close();
-            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

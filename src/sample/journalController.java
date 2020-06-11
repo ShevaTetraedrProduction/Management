@@ -19,6 +19,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -81,16 +83,15 @@ public class journalController implements Initializable {
         HelpMethod.fillGroup(group_comboBox);
 
         //String[] infStd = HandlerDb.getInformationStudent(ID);
-        Map<String, String> mapInf = HandlerDb.getInformationStudent(ID);
+        Map<String, String> mapInf = HandlerDb.getInformationUser(ID);
 
 
         group_comboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
                 System.out.println(newValue);
-                editPane.setVisible(true);
                 GROUP_NAME = newValue;
-                editPane.setVisible(true);
+                HelpMethod.setVisible(new Region[]{editPane});
                 CLASSES.clear();
                 GROUP_ID = HandlerDb.getOneValue(
                         "SELECT group_id FROM groups_table WHERE group_name = ?", new String[]{GROUP_NAME});
