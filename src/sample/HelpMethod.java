@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -112,6 +113,11 @@ public class HelpMethod {
 
 
 public static void guest(AnchorPane mainPane) {  openWindow(mainPane, WINDOWS.MENU.getName()); }
+
+
+public static void setVisible(Region[] arr) { for (Region a : arr) a.setVisible(true); }
+
+public static void setInvisible(Region[] arr) {  for (Region a : arr) a.setVisible(false); }
 
 
     // return hash password by means of md5(not my)
