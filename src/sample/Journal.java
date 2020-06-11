@@ -301,4 +301,6 @@ public class Journal {
     public void setSubject15(int subject15) {
         this.subject15.set(subject15);
     }
+
+
 }
