@@ -66,7 +66,7 @@
                      </font>
                   </Label>
                   <Label fx:id="adm_label" layoutX="14.0" layoutY="124.0" prefHeight="50.0" prefWidth="125.0" text="Обрати групу" />
-                  <Pane layoutX="-1.0" layoutY="162.0" prefHeight="339.0" prefWidth="730.0">
+                  <Pane fx:id="editPane" layoutX="-1.0" layoutY="162.0" prefHeight="339.0" prefWidth="730.0" visible="false">
                      <children>
                         <Pane layoutX="280.0" layoutY="39.0" prefHeight="300.0" prefWidth="450.0">
                            <children>
@@ -100,6 +100,7 @@
                         </JFXButton>
                      </children>
                   </Pane>
+                  <Label fx:id="nameGroup" layoutX="582.0" layoutY="98.0" prefHeight="35.0" prefWidth="125.0" />
                </children>
             </Pane>
          </children>
