@@ -60,9 +60,9 @@ public class StudentController implements Initializable {
 
 
     int ID = new authenticController().getId();
-    String GROUP_NAME = "";
-    int GROUP_ID = -1;
     Map<String, String> mapInf = HandlerDb.getInformationUser(ID);
+    static String GROUP_NAME = "";
+    int GROUP_ID = -1;
 
 
     // navigation
@@ -103,7 +103,7 @@ public class StudentController implements Initializable {
 
         HelpMethod.fillGroup(group_comboBox);
         students_table.setItems(studentsData);
-        //search();
+        search();
 
         //Method  comboBox to always look on  the changes in value
         group_comboBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -112,11 +112,11 @@ public class StudentController implements Initializable {
                 System.out.println(newValue);
                 HelpMethod.setVisible(new Region[]{editPane});
 
-                nameGroup.setText("Стеденти групи: " + newValue);
+                nameGroup.setText("Студенти групи: " + newValue);
                 GROUP_NAME = newValue;
                 GROUP_ID = HandlerDb.getOneValue("SELECT group_id FROM groups_table WHERE group_name = ?;", new String[]{GROUP_NAME});
-                HelpMethod.fillClasses(group_comboBox, GROUP_ID);
-                group_comboBox.getItems().clear();
+                //HelpMethod.fillClasses(group_comboBox, GROUP_ID);
+              //  group_comboBox.getItems().clear();
                 initTable();
                 search();
 
@@ -262,5 +262,21 @@ public class StudentController implements Initializable {
 
         // 5. Add sorted (and filtered) data to the table.
         students_table.setItems(sortedData);
+    }
+
+    public static String getGROUP_NAME() {
+        return GROUP_NAME;
+    }
+
+    public void setGROUP_NAME(String GROUP_NAME) {
+        this.GROUP_NAME = GROUP_NAME;
+    }
+
+    public int getGROUP_ID() {
+        return GROUP_ID;
+    }
+
+    public void setGROUP_ID(int GROUP_ID) {
+        this.GROUP_ID = GROUP_ID;
     }
 }
