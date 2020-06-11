@@ -125,7 +125,7 @@ public class HandlerDb {
     public static ResultSet getResultSet(String query, Object[] o) {
         PreparedStatement preparedStatement = getPreparedStatement(query, o);
         ResultSet resultSet = null;
-        try {  resultSet = preparedStatement.executeQuery(); }
+        try {   resultSet = preparedStatement.executeQuery(); }
         catch (SQLException e) { e.printStackTrace();  }
         return resultSet;
     }
@@ -185,11 +185,9 @@ public class HandlerDb {
         return res.toString();
     }
 
-    public static int getID(String log, String pass) {
-        String columnName = "user_id";
-        String table = "users_table";
-        String query = "SELECT ?  ? WHERE  login = ? && hash_password = ?;";
-        ResultSet resultSet = getResultSet(query, new String[]{columnName, table, log, pass});
+    public static int getUserID(String log, String pass) {
+        String query = "SELECT user_id FROM users_table WHERE  login = ? && hash_password = ?;";
+        ResultSet resultSet = getResultSet(query, new String[]{log, pass});
         int res = -1;
         try {
             resultSet.last();
@@ -223,7 +221,7 @@ public class HandlerDb {
         return res;
     }*/
 
-    public static Map getInformationStudent(int user_id) {
+    public static Map getInformationUser(int user_id) {
         String query = "SELECT accessLevel FROM users_table WHERE user_id = ?";
         int access = getOneValue(query, new Integer[]{user_id});
         String[] res = null;
