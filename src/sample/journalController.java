@@ -98,7 +98,7 @@ public class journalController implements Initializable {
                 journal_table.getColumns().clear();
                 crtTableColumn();
                 initCols();
-                search();
+   //             search();
             }
         });
 
@@ -141,14 +141,10 @@ public class journalController implements Initializable {
 
     private void initCols() {
         gratesData = FXCollections.observableArrayList();
-        Connection connection = HandlerDb.getConnection();
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
-        String query = "SELECT student_id, first_name, last_name FROM students_table WHERE group_id = " + GROUP_ID + ";";
+        GROUP_ID = 1;
+        String query = "SELECT student_id, first_name, last_name FROM students_table WHERE group_id = ?;";
+        ResultSet resultSet = HandlerDb.getResultSet(query, new Integer[]{GROUP_ID});
         try {
-            statement = connection.prepareStatement(query);
-            //statement.setInt(1, GROUP_ID);
-            resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Journal journal = new Journal();
                 int ID = resultSet.getInt(1);
@@ -156,13 +152,12 @@ public class journalController implements Initializable {
                 query = "SELECT grades FROM grades_table WHERE student_id = " + ID + ";";
                 journal.setNameJ(resultSet.getString(2));
                 journal.setLast_nameJ(resultSet.getString(3));
-                if (HandlerDb.checkIsUnique(query, new Integer[]{ID}))
+             //   if (HandlerDb.checkIsUnique(query, new Integer[]{ID}))
+
                 journal.setSubjectsJ(HandlerDb.getList(query));
                 gratesData.add(journal);
             }
             resultSet.close();
-            statement.close();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -173,7 +168,7 @@ public class journalController implements Initializable {
         gpa_col.setCellValueFactory(new PropertyValueFactory<>("AVG"));
         if (CLASSES.size() < 1) return;
         // It's work not right
-
+///!? 0_0 CLASSES = 3
         for (int i = 0; i < CLASSES.size(); i++) {
             String val = "subject" + (1 + i);
             journal_table.getColumns().get(3 + i).setCellValueFactory(new PropertyValueFactory<>(val));
